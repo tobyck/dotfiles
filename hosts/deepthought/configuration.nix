@@ -72,10 +72,12 @@
   # Might need this later?
   # hardware.pulseaudio.enable = true;
 
+  programs.fish.enable = true;
   users.users.toby = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Allow sudo
     initialPassword = "password";
+    shell = pkgs.fish;
   };
 
   # Don't change this unless you really know what you're doing
