@@ -9,16 +9,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.deepthought = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/deepthought/configuration.nix
-      ];
+      modules = [ ./hosts/deepthought/configuration.nix ];
     };
   };
 }

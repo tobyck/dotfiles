@@ -11,14 +11,17 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    # Apps
-    foot
-    firefox
-    vscode    
-
     # Tools
     git
+
+    # System
     alsa-utils
+    brightnessctl
+    wl-clipboard
+
+    # Languages
+    cargo # Rust
+    bun # JS/TS
   ];
 
   # Speed up Hyprland install
@@ -37,7 +40,6 @@
   boot.loader.efi.canTouchEfiVariables = false;
 
   # Use the Asahi GPU driver
-  nixpkgs.overlays = [ inputs.apple-silicon.overlays.default ];
   hardware.asahi.useExperimentalGPUDriver = true;
 
   networking = {
