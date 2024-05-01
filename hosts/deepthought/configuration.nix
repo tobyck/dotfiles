@@ -10,78 +10,107 @@
 
   nixpkgs.config.allowUnfree = true;
 
+	nixpkgs.overlays = [ inputs.hyprland.overlays.default ];
+
   environment.systemPackages = with pkgs; [
-    # Tools
+    # Command line tools
     git
+		killall
 
     # System
     alsa-utils
     brightnessctl
-    wl-clipboard
+		playerctl
+		wl-clipboard
 
-    # Languages
-    cargo # Rust
-    bun # JS/TS
-  ];
+		# Languages
+		cargo # Rust
+		nodejs bun # JS/TS
 
-  # Speed up Hyprland install
-  nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  };
+		# Language servers
+		rust-analyzer
+		nodePackages.typescript-language-server
+		lua-language-server
+	];
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
+	# Speed up Hyprland install
+	nix.settings = {
+		substituters = [ "https://hyprland.cachix.org" ];
+		trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+	};
 
-  # Use the systemd-boot EFI boot loader (idek what this means lol)
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
+	programs.hyprland = {
+		enable = true;
+		package = inputs.hyprland.packages.${pkgs.system}.default;
+	};
 
-  # Use the Asahi GPU driver
-  hardware.asahi.useExperimentalGPUDriver = true;
+	# Idk what this does but apparently I need it
+	boot.loader.systemd-boot.enable = true;
+	boot.loader.efi.canTouchEfiVariables = false;
 
-  networking = {
-    hostName = "deepthought";
-    
-    # These are the recommended settings apparently
-    networkmanager.enable = true;
+	hardware = {
+		opengl = {
+			enable = true;
+			driSupport32Bit = lib.mkForce false;
+			driSupport = true;
+		};
 
-    wireless.iwd = {
-      enable = true;
-      settings.General.EnableNetworkConfiguration = true;
-    };
-  };
+		asahi.useExperimentalGPUDriver = true;
+	};
 
-  time.timeZone = "Pacific/Auckland";
+	networking = {
+		hostName = "deepthought";
 
-  # Use xkb options in tty
-  console.useXkbConfig = true;
+		# These are the recommended settings apparently
+		networkmanager.enable = true;
+		wireless.iwd = {
+			enable = true;
+			settings.General.EnableNetworkConfiguration = true;
+		};
+	};
 
-  # Temporary X11 config
-  services.xserver.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.variant = "colemak";
-  services.xserver.xkb.options = "caps:backspace";
+	time.timeZone = "Pacific/Auckland";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+	# Use xkb options in tty
+	console.useXkbConfig = true;
 
-  # Enable sound.
-  sound.enable = true;
-  # Might need this later?
-  # hardware.pulseaudio.enable = true;
+	# Temporary X11 config
+	services.xserver = {
+		enable = true;
+		desktopManager.xfce.enable = true;
+		xkb.layout = "us";
+		# Kanata handles this now
+		# xkb.variant = "colemak";
+		# xkb.options = "caps:backspace";
+	};
 
-  programs.fish.enable = true;
-  users.users.toby = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Allow sudo
-    initialPassword = "password";
-    shell = pkgs.fish;
-  };
+	# Enable CUPS to print documents.
+	# services.printing.enable = true;
 
-  # Don't change this unless you really know what you're doing
-  system.stateVersion = "24.05";
+	# Enable sound.
+	sound.enable = true;
+	# Might need this later?
+	# hardware.pulseaudio.enable = true;
+
+	programs.fish.enable = true;
+
+	# uinput group for Kanata
+	users.groups.uinput = {};
+	services.udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"'';
+
+	users.users.toby = {
+		isNormalUser = true;
+		extraGroups = [
+			"wheel" # Root permissions
+
+			# Input groups for Kanata to work
+			"uinput"
+			"input" # There's no way that this is safe lol
+		];
+		initialPassword = "password";
+		shell = pkgs.fish;
+	};
+
+	# Don't change this unless you really know what you're doing
+	system.stateVersion = "24.05";
 }
