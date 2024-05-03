@@ -6,6 +6,7 @@
 		./terminal/fish
 
 		./programs/nvim
+		./programs/firefox.nix
 
 		./services/kanata
 
@@ -41,9 +42,7 @@
 		bottom
 
 		# Fonts
+		inter
 		(nerdfonts.override { fonts = [ "Iosevka" ]; })
-
-		# TEMP (will move to seperate config files soon)
-		firefox
 	];
 }
