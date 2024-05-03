@@ -17,6 +17,7 @@
 		
 		# Terminal commands/tools
 		tree
+		gh
 
 		# TEMP (will move to seperate config files soon)
 		firefox
