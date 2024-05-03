@@ -5,6 +5,8 @@
 		./terminal/kitty.nix
 		./terminal/fish
 
+		./programs/nvim
+
 		./services/kanata
 
 		./hypr
@@ -43,6 +45,5 @@
 
 		# TEMP (will move to seperate config files soon)
 		firefox
-		vim
 	];
 }
