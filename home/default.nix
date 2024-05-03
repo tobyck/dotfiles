@@ -5,6 +5,8 @@
 		./terminal/kitty.nix
 		./terminal/fish
 
+		./services/kanata
+
 		./hypr
 	];
 
