@@ -68,8 +68,8 @@
 
 		windowrulev2 = [
 			"suppressevent maximize, class:.*"
-			"opacity 0.85, class:^kitty|firefox$"
-			"opacity 1, title:.*( - YouTube).*$"
+			# "opacity 0.85, class:^kitty|firefox$"
+			# "opacity 1, title:.*( - YouTube).*$"
 		];
 
 		monitor = [ ", preferred, auto, auto" ];
