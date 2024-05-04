@@ -31,7 +31,10 @@
 		gh
 		tree
 		zoxide
+		eza
+		fzf
 		ripgrep
+		unzip
 
 		# Screen capture
 		grim
@@ -49,5 +52,12 @@
 		(nerdfonts.override { fonts = [ "Iosevka" ]; })
 	];
 
-	programs.bash.enable = true;
+	home.shellAliases = {
+		ls = "eza";
+		la = "eza -a";
+		ll = "eza -l --icons";
+
+		md = "mkdir -p";
+		rd = "rmdir";
+	};
 }
