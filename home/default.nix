@@ -26,9 +26,10 @@
 		swaybg
 		
 		# Terminal commands/tools
+		gh
 		tree
 		zoxide
-		gh
+		ripgrep
 
 		# Screen capture
 		grim
@@ -45,4 +46,6 @@
 		inter
 		(nerdfonts.override { fonts = [ "Iosevka" ]; })
 	];
+
+	programs.bash.enable = true;
 }

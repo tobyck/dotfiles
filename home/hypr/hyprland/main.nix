@@ -1,15 +1,4 @@
-{ pkgs, ... }:
-
 {
-	home.file.".local/share/icons/rose-pine-hyprcursor" = {
-		source = pkgs.fetchFromGitHub {
-		  owner = "ndom91";
-		  repo = "rose-pine-hyprcursor";
-		  rev = "7e0473876f0e6d2308813a78fe84a6c6430b112b";
-		  hash = "sha256-wLuFLI6S5DOretqJN05+kvrs8cbnZKfVLXrJ4hvI/Tg=";
-		} + "/hyprcursors_uncompressed";
-		recursive = true;
-	};
 
 	wayland.windowManager.hyprland.settings = let
 		theme = builtins.fetchurl {
@@ -49,8 +38,6 @@
 				natural_scroll = true;
 				tap-to-click = false;
 				clickfinger_behavior = true;
-				# temporary until I fix Hyprland on Home Manager and the two settings above take effect
-				disable_while_typing = true;
 			};
 
 			sensitivity = 0;
@@ -68,29 +55,17 @@
 
 		windowrulev2 = [
 			"suppressevent maximize, class:.*"
-			# "opacity 0.85, class:^kitty|firefox$"
-			# "opacity 1, title:.*( - YouTube).*$"
+			"opacity 0.92, class:^kitty|firefox$"
+			"opacity 1, title:.*( - YouTube).*$"
 		];
 
 		monitor = [ ", preferred, auto, auto" ];
 		
-		# env = [
-		#	"HYPRCURSOR_THEME,"
-		#	"HYPRCURSOR_SIZE,32"
-		#	"XCURSOR_SIZE,32"
-		#	"QT_QPA_PLATFORMTHEME,qt5ct"
-		# ];
+		env = [ "QT_QPA_PLATFORMTHEME,qt5ct" ];
 
 		misc = {
 			force_default_wallpaper = 0;
+			vfr = "on";
 		};
-	};
-
-	systemd.user.sessionVariables = {
-		HYPRCURSOR_THEME = "rose-pine-hyprcursor";
-		HYPRCURSOR_SIZE = "32";
-		XCURSOR_SIZE = "32";
-		QT_QPA_PLATFORMTHEME = "qt5ct";
-		SOME_TEST = "hello";
 	};
 }

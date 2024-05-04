@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
 	wayland.windowManager.hyprland.settings = {
 		general = {
@@ -12,14 +14,7 @@
 		decoration = {
 			rounding = 6;
 
-			blur = {
-				enabled = true;
-				size = 50;
-				passes = 2;
-				brightness = 1.6;
-			};
-
-			# Default shadow6
+			# Default shadow
 			drop_shadow = true;
 			shadow_range = 4;
 			shadow_render_power = 3;
@@ -41,5 +36,12 @@
 				"workspaces, 1, 5, default"
 			];
 		};
+	};
+
+	home.pointerCursor = {
+		gtk.enable = true;
+		package = pkgs.apple-cursor;
+		name = "macOS-Monterey";
+		size = 22;
 	};
 }
