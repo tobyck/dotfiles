@@ -2,19 +2,19 @@
 
 {
 	wayland.windowManager.hyprland.settings = let
-	  border = false;
+	  border = true;
 	in {
 		general = {
 			gaps_in = 4;
 			gaps_out = 8;
-			border_size = if border then 2 else 0;
+			border_size = if border then 1 else 0;
 
-			"col.active_border" = "$iris $foam 45deg";
+			"col.active_border" = "$iris $foam -45deg";
 			"col.inactive_border" = "$muted"; # Grey
 		};
 
 		decoration = {
-			rounding = if border then 6 else 0;
+			rounding = 6; # if border then 6 else 0;
 
 			# Default shadow
 			drop_shadow = border;

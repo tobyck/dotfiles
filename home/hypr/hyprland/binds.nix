@@ -19,6 +19,15 @@
 		workspaces = range 10;
 
 		bash-get-date = "$(date +%Y%m%d-%H%M%S)";
+
+		screen-capture-binds = [
+			"$mainMod, S, exec, IMG=~/Pictures/Screenshots/screenshot-${bash-get-date}.png && grim $IMG && wl-copy < $IMG" # Screenshot the whole screen then copy to clipboard
+			"$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # Screenshot selected area then open with swappy 
+			"$mainMod SHIFT ALT, R, exec, $screen_rec ~/Videos/Screen\\ Recordings/screenrec-${bash-get-date}.mp4" # Record selected area
+			"$mainMod SHIFT, R, exec, killall -s SIGINT wf-recorder" # Stop recording
+		];
+
+		lockscreen-screen-capture = true;
 	in {
 		"$mainMod" = "SUPER";
 
@@ -34,14 +43,9 @@
 			"$mainMod, P, pseudo,"
 			"$mainMod, J, togglesplit,"
 
-			# Screen capture
-			"$mainMod, S, exec, IMG=~/Pictures/Screenshots/screenshot-${bash-get-date}.png && grim $IMG && wl-copy < $IMG" # Screenshot the whole screen then copy to clipboard
-			"$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # Screenshot selected area then open with swappy 
-			"$mainMod SHIFT ALT, R, exec, $screen_rec ~/Videos/Screen\\ Recordings/screenrec-${bash-get-date}.mp4" # Record selected area
-			"$mainMod SHIFT, R, exec, killall -s SIGINT wf-recorder" # Stop recording
-
 			# Misc
 			"$mainMod, B, exec, hyprctl dispatch toggleopaque"
+			"$mainMod SHIFT, L, exec, hyprlock"
 
 			# Workspace management
 			(move-to-ws left "e-1")
@@ -52,7 +56,8 @@
 		]
 		++ (arrows-for move-focus [ "l" "d" "u" "r" ])
 		++ (map (i: move-to-ws (toString i) (toString i)) workspaces)
-		++ (map (i: go-to-ws "" (toString i) (toString i)) workspaces);
+		++ (map (i: go-to-ws "" (toString i) (toString i)) workspaces)
+		++ (if lockscreen-screen-capture then [] else screen-capture-binds);
 
 		binde = [
 			", XF86AudioPrev, exec, playerctl previous"
@@ -70,6 +75,8 @@
 			"$mainMod, XF86MonBrightnessDown, exec, $brightness down $kbd_backlight_name"
 			"$mainMod, XF86MonBrightnessUp, exec, $brightness up $kbd_backlight_name"
 		];
+
+		bindl = if lockscreen-screen-capture then screen-capture-binds else [];
 
 		bindm = [
 			"$mainMod, mouse:272, movewindow"

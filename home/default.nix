@@ -46,6 +46,7 @@
 		starship
 		nitch
 		bottom
+		ffmpeg
 
 		# Fonts
 		inter

@@ -11,9 +11,9 @@
 		"$terminal" = "kitty";
 		"$browser" = "firefox";
 
-		"$volume" = "${./scripts/volume.sh}";
-		"$brightness" = "${./scripts/brightness.sh}";
-		"$screen_rec" = "${./scripts/screen-record.sh}";
+		"$volume" = "${../scripts/volume.sh}";
+		"$brightness" = "${../scripts/brightness.sh}";
+		"$screen_rec" = "${../scripts/screen-record.sh}";
 		"$kbd_backlight_name" = "kbd_backlight";
 
 		exec-once = [
