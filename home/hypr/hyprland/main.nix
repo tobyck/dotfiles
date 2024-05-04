@@ -16,8 +16,12 @@
 		"$screen_rec" = "${./scripts/screen-record.sh}";
 		"$kbd_backlight_name" = "kbd_backlight";
 
+		exec-once = [
+			"hypridle"
+		];
+
 		exec = [
-			"swaybg -i ${../../wallpapers/ocean.jpg}"
+			"swaybg -i ${../../wallpapers/gradient2.png}"
 		];
 
 		debug = {
@@ -53,11 +57,7 @@
 			preserve_split = "yes";
 		};
 
-		windowrulev2 = [
-			"suppressevent maximize, class:.*"
-			"opacity 0.92, class:^kitty|firefox$"
-			"opacity 1, title:.*( - YouTube).*$"
-		];
+		windowrulev2 = [ "suppressevent maximize, class:.*" ];
 
 		monitor = [ ", preferred, auto, auto" ];
 		

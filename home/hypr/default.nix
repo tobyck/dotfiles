@@ -1,5 +1,8 @@
 {
 	imports = [ ./hyprland ];
 
-	# Other stuff like hypridle, hyprlock, etc. will be symlinked from here
+	home.file = {
+		".config/hypr/hypridle.conf".source = ./hypridle.conf;
+		".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
+	};
 }

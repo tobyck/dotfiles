@@ -24,6 +24,8 @@
 	home.packages = with pkgs; [
 		# Desktop
 		swaybg
+		hypridle
+		hyprlock
 		
 		# Terminal commands/tools
 		gh
