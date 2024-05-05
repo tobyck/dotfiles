@@ -8,7 +8,7 @@
 			label {
 				monitor =
 
-				text = cmd[update:1000] ${./scripts/lockscreen-battery.sh}
+				text = cmd[update:2000] ${./scripts/lockscreen-battery.sh}
 				font_size = 18
 				font_family = Iosevka NF ExtraBold
 

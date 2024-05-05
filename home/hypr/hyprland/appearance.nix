@@ -20,7 +20,7 @@
 			drop_shadow = border;
 			shadow_range = 4;
 			shadow_render_power = 3;
-			"col.shadow" = "rgba(1a1a1aee)";
+			"col.shadow" = "rgba(202020dd)";
 		};
 
 		windowrulev2 = [
