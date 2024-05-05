@@ -9,8 +9,9 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		# This is release 2024-04-20, the one before the big one with the kernel and uboot updates that apprently breaks graphics
 		apple-silicon = {
-			url = "github:tpwrules/nixos-apple-silicon/d47afc3f0f8b3078c818da8609c41340af61a2ec";
+			url = "github:tpwrules/nixos-apple-silicon/15dbcfd42d9f4924b2f9cca5942d3cb0048e147f";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
