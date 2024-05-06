@@ -35,6 +35,7 @@
 		fzf
 		ripgrep
 		unzip
+		nodePackages.sloc
 
 		# Screen capture
 		grim
@@ -52,6 +53,11 @@
 		inter
 		(nerdfonts.override { fonts = [ "Iosevka" ]; })
 	];
+
+	programs.ags = {
+		enable = true;
+		configDir = ./ags;
+	};
 
 	home.shellAliases = {
 		ls = "eza";

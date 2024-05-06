@@ -1,0 +1,7 @@
+$main: #191724;
+$muted: #6e6a86;
+
+@mixin theme {
+	background-color: $main;
+	border: 1pt solid $muted;
+}

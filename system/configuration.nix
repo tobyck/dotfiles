@@ -10,10 +10,10 @@
 
 	environment.systemPackages = with pkgs; [
 		# Command line tools
-  		git
+  	git
 		killall
 
-    		# System
+    # System
 		alsa-utils
 		brightnessctl
 		playerctl
@@ -22,6 +22,7 @@
 		# Languages
 		cargo # Rust
 		nodejs bun # JS/TS
+		sassc # CSS preprocessor
 
 		# Language servers
 		rust-analyzer

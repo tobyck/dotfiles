@@ -16,6 +16,8 @@
 		};
 
 		hyprland.url = "github:hyprwm/Hyprland";
+
+		ags.url = "github:Aylur/ags";
 	};
 
 	outputs = { self, nixpkgs, home-manager, ... }@inputs: {
@@ -28,7 +30,12 @@
 				{
 					home-manager.useGlobalPkgs = true;
 					home-manager.backupFileExtension = "backup";
-					home-manager.users.toby = import ./home;
+					home-manager.users.toby = {
+						imports = [
+							inputs.ags.homeManagerModules.default
+							./home
+						];
+					};
 				}
 			];
 		};

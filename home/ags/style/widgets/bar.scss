@@ -1,0 +1,8 @@
+@import '../theme.scss';
+
+window.bar {
+	@include theme;
+
+	border-radius: 0 0 6pt 6pt;
+	border-top: none;
+}
