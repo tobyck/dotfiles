@@ -2,9 +2,6 @@ local keymap = vim.keymap
 
 keymap.set('i', '<C-c>', '<Esc>')
 
--- clear highlighting
-keymap.set('n', '<leader>nh', ':noh<CR>')
-
 -- remap arrows for colemak
 local function arrow_remap(from, to)
 	keymap.set({ 'n', 'v', 'o' }, from, to)

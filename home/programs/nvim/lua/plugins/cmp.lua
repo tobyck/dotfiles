@@ -25,9 +25,6 @@ return {
 					{ name = 'buffer' }
 				},
 				mapping = cmp.mapping.preset.insert({
-					['<C-l>'] = cmp.mapping.select_prev_item(),
-					['<C-n>'] = cmp.mapping.select_next_item(),
-
 					['<C-f>'] = cmp.mapping(function() luasnip.jump(1) end),
 					['<C-b>'] = cmp.mapping(function() luasnip.jump(-1) end),
 

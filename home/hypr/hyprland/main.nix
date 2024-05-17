@@ -67,5 +67,9 @@
 			force_default_wallpaper = 0;
 			vfr = "on";
 		};
+
+		xwayland = {
+			force_zero_scaling = "on";
+		};
 	};
 }

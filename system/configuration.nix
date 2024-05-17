@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{  pkgs, inputs, ... }:
 
 {
 	imports = [
@@ -8,6 +8,8 @@
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+	nixpkgs.config.allowUnfree = true;
+	
 	environment.systemPackages = with pkgs; [
 		# Command line tools
   	git
@@ -20,12 +22,13 @@
 		wl-clipboard
 
 		# Languages
-		cargo # Rust
+		cargo rustc rustup # Rust
 		nodejs bun # JS/TS
+		python3
 		sassc # CSS preprocessor
 
 		# Language servers
-		rust-analyzer
+		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
 		nodePackages.typescript-language-server
 		lua-language-server
 		nil # For Nix
@@ -94,6 +97,9 @@
 			# Input groups for Kanata to work
 			"uinput"
 			"input" # There's no way that this is safe lol
+
+			# So that I can read from USB devices like Arduinos
+			"dialout"
 		];
 		initialPassword = "password";
 		shell = pkgs.fish;

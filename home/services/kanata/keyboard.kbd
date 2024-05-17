@@ -25,6 +25,7 @@
 	;; layout switches
 	cmk (tap-hold 200 200 grv (layer-switch colemak))
 	qwt (tap-hold 200 200 grv (layer-switch qwerty))
+	spc (tap-hold 200 200 spc (layer-while-held nav))
 
 	;; i need to work out what's going on here lol
 	tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-base tap 20))
@@ -38,6 +39,9 @@
 	e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @tap) rsft $rh-keys)
 	i (tap-hold-release-keys $tap-time2 $tap-time2 (multi i @tap) ralt $rh-keys)
 	o (tap-hold-release-keys $tap-time1 $tap-time1 (multi o @tap) rmet $rh-keys)
+
+	;; unicode aliases
+	emd (unicode —)
 )
 
 (deflayer colemak
@@ -45,7 +49,7 @@
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc @a   @r   @s   @t   d    h    @n   @e   @i   @o   _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
-	_    _    _              spc            _    _
+	_    _    _              @spc           _    _
 )
 
 (deflayer colemak-no-mods
@@ -54,6 +58,14 @@
 	bspc a    r    s    t    d    h    n    e    i    o    _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
 	_    _    _              spc            _    _
+)
+
+(deflayer nav
+	XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   @emd XX   XX
+	XX   XX   XX   XX   XX   XX   XX   up   XX   XX   XX   XX   XX   XX
+	XX   lmet lalt lsft lctl XX   left down rght XX   XX   XX   XX
+	_    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+	_    _    _              _              _    _
 )
 
 (deflayer qwerty

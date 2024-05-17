@@ -27,7 +27,7 @@
 		hypridle
 		hyprlock
 		
-		# Terminal commands/tools
+		# Terminal tools
 		gh
 		tree
 		zoxide
@@ -36,6 +36,9 @@
 		ripgrep
 		unzip
 		nodePackages.sloc
+		ffmpeg
+		arduino-cli
+		openssl
 
 		# Screen capture
 		grim
@@ -47,7 +50,7 @@
 		starship
 		nitch
 		bottom
-		ffmpeg
+		postman
 
 		# Fonts
 		inter
