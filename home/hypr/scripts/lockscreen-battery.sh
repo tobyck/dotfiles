@@ -1,4 +1,4 @@
-percentage=$(upower -d | grep -Po ".{1,2}(?=%)" | head -1 | tr -d " ")
+percentage=$(upower -d | grep -Po ".{1,3}(?=%)" | head -1 | tr -d " ")
 
 if [[ $percentage -lt 20 ]] then
 	colour="eb6f92"

@@ -12,7 +12,7 @@
 				font_size = 18
 				font_family = Iosevka NF ExtraBold
 
-				position = 0, -30
+				position = 0, 30
 				halign = center
 				valign = bottom
 			}
