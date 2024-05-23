@@ -6,7 +6,6 @@
 		./terminal/fish
 
 		./programs/nvim
-		./programs/firefox.nix
 
 		./services/kanata
 
@@ -19,7 +18,12 @@
 		stateVersion = "23.11";
 	};
 
-	fonts.fontconfig.enable = true;
+	fonts.fontconfig = {
+		enable = true;
+		defaultFonts = {
+			sansSerif = [ "Inter" ];
+		};
+	};
 
 	home.packages = with pkgs; [
 		# Desktop
@@ -39,6 +43,7 @@
 		ffmpeg
 		arduino-cli
 		openssl
+		mosquitto
 
 		# Screen capture
 		grim
@@ -47,11 +52,12 @@
 		wf-recorder
 
 		# Misc
+		firefox
 		starship
 		nitch
 		bottom
 		postman
-		mosquitto
+		hyprpicker
 
 		# Fonts
 		inter
@@ -59,7 +65,7 @@
 	];
 
 	programs.ags = {
-		enable = true;
+		enable = false;
 		configDir = ./ags;
 	};
 

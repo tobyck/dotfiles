@@ -12,10 +12,10 @@
 		# This is release 2024-04-20, the one before the big one with the kernel and uboot updates that apprently breaks graphics
 		apple-silicon = {
 			url = "github:tpwrules/nixos-apple-silicon/15dbcfd42d9f4924b2f9cca5942d3cb0048e147f";
-			inputs.nixpkgs.follows = "nixpkgs";
+			# inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		hyprland.url = "github:hyprwm/Hyprland";
+		hyprland.url = "github:hyprwm/Hyprland/0c513ba91bd73106be99e35b1a020d24e5ae874a";
 
 		ags.url = "github:Aylur/ags";
 	};

@@ -5,12 +5,8 @@
 		enable = true;
 
 		theme = {
-			name = "Catppuccin-Mocha-Compact-Lavender-Dark";
-			package = pkgs.catppuccin-gtk.override {
-				accents = [ "lavender" ];
-				size = "compact";
-				variant = "mocha";
-			};
+			name = "Tokyonight-Dark-BL";
+			package = pkgs.tokyonight-gtk-theme;
 		};
 	};
 
