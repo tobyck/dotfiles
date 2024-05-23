@@ -20,7 +20,7 @@ return {
 				'lua',
 				'json',
 				'markdown',
-				'arduino'
+				'arduino',
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -38,8 +38,8 @@ return {
 						['ik'] = '@block.inner',
 						['aca'] = '@call.outer',
 						['ica'] = '@call.inner',
-						['aco'] = '@comment.outer',
-						['ico'] = '@comment.inner',
+						['acm'] = '@comment.outer',
+						['icm'] = '@comment.inner',
 						['acn'] = '@conditional.outer',
 						['icn'] = '@conditional.inner',
 						['af'] = '@function.outer',
@@ -49,8 +49,8 @@ return {
 						['in'] = '@number.inner',
 						['aa'] = '@parameter.outer',
 						['ia'] = '@parameter.inner',
-						['ar'] = '@return.outer',
-						['ir'] = '@return.inner'
+						['art'] = '@return.outer',
+						['irt'] = '@return.inner'
 					}
 				}
 			}

@@ -4,6 +4,8 @@
 	imports = [
 		./hardware-configuration.nix
 		inputs.apple-silicon.nixosModules.default
+
+		./services/mosquitto
 	];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -22,10 +24,10 @@
 		wl-clipboard
 
 		# Languages
-		cargo rustc rustup # Rust
-		nodejs bun # JS/TS
+		cargo rustc rustup
+		nodejs bun
 		python3
-		sassc # CSS preprocessor
+		sassc
 
 		# Language servers
 		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)

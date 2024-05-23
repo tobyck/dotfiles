@@ -51,6 +51,7 @@
 		nitch
 		bottom
 		postman
+		mosquitto
 
 		# Fonts
 		inter
@@ -66,6 +67,7 @@
 		ls = "eza";
 		la = "eza -a";
 		ll = "eza -l --icons";
+		lla = "eza -la --icons";
 
 		md = "mkdir -p";
 		rd = "rmdir";
