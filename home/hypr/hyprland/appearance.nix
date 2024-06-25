@@ -9,8 +9,8 @@
 			gaps_out = 8;
 			border_size = if border then 1 else 0;
 
-			"col.active_border" = "$iris $foam -45deg";
-			"col.inactive_border" = "$muted"; # Grey
+			"col.active_border" = "rgb(a9b1d6)";
+			"col.inactive_border" = "rgb(565f89)";
 		};
 
 		decoration = {
@@ -47,8 +47,8 @@
 
 	home.pointerCursor = {
 		gtk.enable = true;
-		package = pkgs.apple-cursor;
-		name = "macOS-Monterey";
+		package = pkgs.bibata-cursors;
+		name = "Bibata-Modern-Classic";
 		size = 22;
 	};
 }

@@ -1,4 +1,3 @@
--- use space as the leader key
 vim.g.mapleader = ' '
 
 -- bootstrap lazy.nvim
@@ -9,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
 		'clone',
 		'--filter=blob:none',
 		'https://github.com/folke/lazy.nvim.git',
-		'--branch=stable', -- latest stable release
+		'--branch=stable',
 		lazypath,
 	})
 end
@@ -21,7 +20,7 @@ require('lazy').setup('plugins')
 require('options')
 require('keymap')
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme tokyonight")
 
 -- do stuff when an lsp attaches
 vim.api.nvim_create_autocmd('LspAttach', {

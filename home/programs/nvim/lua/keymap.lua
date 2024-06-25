@@ -20,6 +20,11 @@ arrow_remap('k', 'e')
 arrow_remap('gk', 'ge')
 arrow_remap('gj', 'gn')
 
+keymap.set('n', '<C-l>', '<C-y>')
+keymap.set('n', '<C-n>', '<C-e>')
+keymap.set({ 'n', 'v' }, '<C-h>', '20zh')
+keymap.set({ 'n', 'v' }, '<C-e>', '20zl')
+
 -- N and L (J and K on qwerty) to move a line up or down (from ThePrimeagen)
 keymap.set('v', 'N', ":m '>+1<CR>gv=gv")
 keymap.set('v', 'L', ":m '<-2<CR>gv=gv")

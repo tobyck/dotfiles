@@ -4,7 +4,8 @@
 	in {
 		enable = true;
 
-		theme = "Rosé Pine";
+		# theme = "Rosé Pine";
+		theme = "Tokyo Night";
 
 		font = {
 			name = font;

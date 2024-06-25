@@ -1,13 +1,5 @@
 {
-
-	wayland.windowManager.hyprland.settings = let
-		theme = builtins.fetchurl {
-			url = "https://raw.githubusercontent.com/rose-pine/hyprland/6898fe967c59f9bec614a9a58993e0cb8090d052/rose-pine.conf";
-			sha256 = "sha256:0q4zna3njimn2ffaincjcxyiyx8qlz625q6n4k3qbxwqbmvdlcc2";
-		};
-	in {
-		source = theme;
-
+	wayland.windowManager.hyprland.settings = {
 		"$terminal" = "kitty";
 		"$browser" = "firefox";
 
@@ -21,7 +13,7 @@
 		];
 
 		exec = [
-			"swaybg -i ${../../wallpapers/gradient2.png}"
+			"swaybg -i ${../../wallpapers/snowflake1.png}"
 		];
 
 		debug = {
@@ -29,7 +21,7 @@
 		};
 		
 		general = {
-			layout = "dwindle";
+			layout = "master";
 			allow_tearing = false;
 		};
 
@@ -39,12 +31,13 @@
 			follow_mouse = 1;
 
 			touchpad = {
-				natural_scroll = true;
+				natural_scroll = "on";
 				tap-to-click = false;
-				clickfinger_behavior = true;
+				clickfinger_behavior = "on";
+				disable_while_typing = "no";
 			};
 
-			sensitivity = 0;
+			sensitivity = 0.2;
 		};
 
 		gestures = {
@@ -57,11 +50,19 @@
 			preserve_split = "yes";
 		};
 
+		master = {
+			allow_small_split = "yes";
+			new_is_master = "no";
+		};
+
 		windowrulev2 = [ "suppressevent maximize, class:.*" ];
 
 		monitor = [ ", preferred, auto, auto" ];
 		
-		env = [ "QT_QPA_PLATFORMTHEME,qt5ct" ];
+		env = [
+			"QT_QPA_PLATFORMTHEME,qt5ct" 
+			"XCURSOR_SIZE,24"
+		];
 
 		misc = {
 			force_default_wallpaper = 0;

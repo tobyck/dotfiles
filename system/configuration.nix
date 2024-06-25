@@ -1,11 +1,9 @@
-{  pkgs, inputs, ... }:
+{  pkgs, inputs, config, ... }:
 
 {
 	imports = [
 		./hardware-configuration.nix
 		inputs.apple-silicon.nixosModules.default
-
-		./services/mosquitto
 	];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -16,6 +14,7 @@
 		# Command line tools
   	git
 		killall
+		config.boot.kernelPackages.perf
 
     # System
 		alsa-utils
@@ -27,13 +26,8 @@
 		cargo rustc rustup
 		nodejs bun
 		python3
+		clang
 		sassc
-
-		# Language servers
-		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
-		nodePackages.typescript-language-server
-		lua-language-server
-		nil # For Nix
 	];
 
 	# Speed up Hyprland install
@@ -62,6 +56,10 @@
 			enable = true;
 			settings.General.EnableNetworkConfiguration = true;
 		};
+
+		firewall.allowedTCPPorts = [
+			1883 8883 # For Mosquitto
+		];
 	};
 
 	# NZ

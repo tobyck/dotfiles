@@ -6,6 +6,7 @@
 		./terminal/fish
 
 		./programs/nvim
+		./programs/firefox.nix
 
 		./services/kanata
 
@@ -42,8 +43,10 @@
 		nodePackages.sloc
 		ffmpeg
 		arduino-cli
-		openssl
 		mosquitto
+		# openssl
+		surge-cli
+		cargo-flamegraph
 
 		# Screen capture
 		grim
@@ -52,12 +55,17 @@
 		wf-recorder
 
 		# Misc
-		firefox
 		starship
 		nitch
 		bottom
 		postman
 		hyprpicker
+
+		# Language servers
+		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
+		nodePackages.typescript-language-server
+		lua-language-server
+		nil # For Nix
 
 		# Fonts
 		inter
@@ -65,7 +73,7 @@
 	];
 
 	programs.ags = {
-		enable = false;
+		enable = true;
 		configDir = ./ags;
 	};
 
