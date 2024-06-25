@@ -14,6 +14,7 @@
 
 		exec = [
 			"swaybg -i ${../../wallpapers/snowflake1.png}"
+			"ags"
 		];
 
 		debug = {

@@ -1,7 +1,9 @@
-$main: #191724;
-$muted: #6e6a86;
+$bg: #1a1b26;
+$fg: #a9b1d6;
+$inactive: #565f89;
+$shadow: #00000044;
 
-@mixin theme {
-	background-color: $main;
-	border: 1pt solid $muted;
+@mixin box {
+  background-color: $bg;
+  border: 1pt solid $inactive;
 }

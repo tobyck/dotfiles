@@ -1,8 +1,29 @@
 @import '../theme.scss';
 
-window.bar {
-	@include theme;
+$vertical-padding: 5px;
+$end-padding: 9px;
+$border-radius: 6pt;
 
-	border-radius: 0 0 6pt 6pt;
-	border-top: none;
+window.bar {
+  @include box;
+
+  border-radius: 0 0 $border-radius $border-radius;
+  border-top: none;
+  font-family: "Iosevka NF";
+  font-size: 11px;
+
+  .left-side {
+    margin-left: $end-padding;
+    margin-top: $vertical-padding;
+    margin-bottom: calc(#{$vertical-padding} + 1px);
+  }
+
+  .right-side {
+    margin-right: $end-padding;
+  }
+
+  .menu-icon {
+    font-size: 14px;
+    margin-top: -2pt;
+  }
 }

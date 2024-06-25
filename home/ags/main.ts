@@ -1,7 +1,7 @@
-import bar from 'widgets/bar/bar'
+import Bar from 'widgets/bar'
 
 App.config({
 	windows: [
-		bar()
+		Bar()
 	]
 })
