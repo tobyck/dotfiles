@@ -1,4 +1,4 @@
-import Bar from 'widgets/bar'
+import Bar from "widgets/bar"
 
 App.config({
 	windows: [

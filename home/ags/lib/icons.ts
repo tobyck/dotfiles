@@ -1,9 +1,8 @@
 export default {
-	nix: "\uf313",
+	nix: "nix-snowflake",
 	battery: {
 		charging: "\udb80\udc84",
 		normal: [
-			"\udb80\udc83", // warning (with exclamation mark)
 			"\udb80\udc7b", // 10%
 			"\udb80\udc7c", // 20%
 			"\udb80\udc7d", // ...
@@ -11,8 +10,8 @@ export default {
 			"\udb80\udc7f",
 			"\udb80\udc80",
 			"\udb80\udc81",
-			"\udb80\udc82", // 90%
-			"\udb85\udfe2", // full (with checkmark)
+			"\udb80\udc82", 
+			"\udb80\udc79", // 100%
 		]
 	}
 }

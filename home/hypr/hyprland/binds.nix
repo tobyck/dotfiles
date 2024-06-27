@@ -47,6 +47,7 @@
 			# Misc
 			"$mainMod, B, exec, hyprctl dispatch toggleopaque"
 			"$mainMod CTRL, L, exec, hyprlock"
+			"$mainMod SHIFT ALT, R, exec, ags -q && ags" # Restart AGS
 
 			(go-to-ws "CTRL" left "e-1")
 			(go-to-ws "CTRL" right "e+1")

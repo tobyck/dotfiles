@@ -1,29 +1,65 @@
 @import '../theme.scss';
 
-$vertical-padding: 5px;
-$end-padding: 9px;
-$border-radius: 6pt;
+$padding: 6px;
+$accent: $blue;
 
 window.bar {
   @include box;
 
   border-radius: 0 0 $border-radius $border-radius;
   border-top: none;
-  font-family: "Iosevka NF";
-  font-size: 11px;
+  font-size: 10.7px;
 
   .left-side {
-    margin-left: $end-padding;
-    margin-top: $vertical-padding;
-    margin-bottom: calc(#{$vertical-padding} + 1px);
+    margin-left: $padding * 2;
   }
 
   .right-side {
-    margin-right: $end-padding;
+    margin-right: $padding;
   }
 
-  .menu-icon {
-    font-size: 14px;
-    margin-top: -2pt;
+  .subgroup, .app-name {
+    background-color: $bg_highlight;
+    padding: 2.5px 8px;
+    border-radius: 3.5pt;
+    color: $fg;
+    margin: $padding 0; 
+  }
+
+  .logo {
+    font-size: 12px;
+  }
+
+  .workspaces {
+    label {
+      font-size: 0;
+      min-width: 5pt;
+      min-height: 5pt;
+      background-color: $bg;
+      border-radius: 50%;
+      transition: 0.15s ease all;
+
+      &.occupied {
+        border-radius: 30%;
+        background-color: $fg_gutter;
+        min-width: 7pt;
+        min-height: 7pt;
+      }
+
+      &.active {
+        font-size: 8px;
+        color: $fg_gutter;
+        border-radius: 4pt;
+        background-color: $accent;
+        padding-top: 2px;
+        min-width: 18pt;
+        min-height: 10pt;
+      }
+    }
+  }
+
+  .battery {
+    font-size: 16px;
+    margin: -3px;
   }
 }

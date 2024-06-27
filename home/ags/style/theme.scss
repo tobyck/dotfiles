@@ -1,9 +1,24 @@
-$bg: #1a1b26;
+$bg: #24283b;
+$bg_dark: #1a1b26;
+$bg_highlight: #292e42;
 $fg: #a9b1d6;
+$fg_gutter: #3b4261;
 $inactive: #565f89;
 $shadow: #00000044;
 
+$red: #f7768e;
+$orange: #ff9e64;
+$yellow: #e0af68;
+$green: #9ece6a;
+$blue: #7aa2f7;
+$cyan: #7dcfff;
+
+$comment: #565f89;
+
+$border-radius: 6pt;
+
 @mixin box {
-  background-color: $bg;
+  background-color: $bg_dark;
   border: 1pt solid $inactive;
+  font-family: "Iosevka NF";
 }
