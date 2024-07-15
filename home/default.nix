@@ -85,5 +85,8 @@
 
 		md = "mkdir -p";
 		rd = "rmdir";
+
+		# random notes for random things
+		notes = "$EDITOR ~/Documents/notes.md";
 	};
 }

@@ -39,7 +39,7 @@
 
 			# WM (these are all default)
 			"$mainMod, C, killactive,"
-			"$mainMod, M, exit,"
+			"$mainMod SHIFT ALT, M, exit," # except this one (added more mods to avoid accidental triggering)
 			"$mainMod, V, togglefloating,"
 			"$mainMod, P, pseudo,"
 			"$mainMod, J, togglesplit,"
@@ -48,6 +48,7 @@
 			"$mainMod, B, exec, hyprctl dispatch toggleopaque"
 			"$mainMod CTRL, L, exec, hyprlock"
 			"$mainMod SHIFT ALT, R, exec, ags -q && ags" # Restart AGS
+			"$mainMod SHIFT, P, exec, wl-copy $(hyprpicker)"
 
 			(go-to-ws "CTRL" left "e-1")
 			(go-to-ws "CTRL" right "e+1")

@@ -21,6 +21,7 @@ require('options')
 require('keymap')
 
 vim.cmd("colorscheme tokyonight")
+vim.cmd("set spell")
 
 -- do stuff when an lsp attaches
 vim.api.nvim_create_autocmd('LspAttach', {

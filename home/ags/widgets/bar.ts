@@ -2,8 +2,8 @@ import icons from "lib/icons"
 import { range } from "lib/utils"
 import Gtk from "types/@girs/gtk-3.0/gtk-3.0"
 
-const SHORT_DATE_FORMAT = "%a %b %_d"
-const LONG_DATE_FORMAT = "%A %B %e %Y"
+const SHORT_DATE_FORMAT = "%a %b %-d"
+const LONG_DATE_FORMAT = "%A %B %-e %Y"
 const TIME_FORMAT = "%-I:%M %p"
 
 const LEFT_SIDE_BAR_SPACING = 6

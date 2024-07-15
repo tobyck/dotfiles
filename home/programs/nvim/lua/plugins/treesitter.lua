@@ -21,6 +21,7 @@ return {
 				'json',
 				'markdown',
 				'arduino',
+				'asm'
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -32,8 +33,8 @@ return {
 						['a='] = '@assignment.outer',
 						['ilh'] = '@assignment.lhs',
 						['irh'] = '@assignment.rhs',
-						['abt'] = '@attribute.outer',
-						['ibt'] = '@attribute.inner',
+						['aut'] = '@attribute.outer',
+						['iut'] = '@attribute.inner',
 						['ak'] = '@block.outer',
 						['ik'] = '@block.inner',
 						['aca'] = '@call.outer',
@@ -51,6 +52,25 @@ return {
 						['ia'] = '@parameter.inner',
 						['art'] = '@return.outer',
 						['irt'] = '@return.inner'
+					}
+				},
+				swap = {
+					enable = true,
+					swap_next = {
+						["<leader>a"] = "@parameter.inner"
+					},
+					swap_previous = {
+						["<leader>A"] = "@parameter.inner"
+					}
+				},
+				move = {
+					enable = true,
+					set_jumps = true,
+					goto_next_end = {
+						["]a"] = "@parameter.inner"
+					},
+					goto_previous_end = {
+						["[a"] = "@parameter.inner"
 					}
 				}
 			}
