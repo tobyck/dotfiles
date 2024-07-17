@@ -57,10 +57,10 @@ return {
 				swap = {
 					enable = true,
 					swap_next = {
-						["<leader>a"] = "@parameter.inner"
+						["<leader>sa"] = "@parameter.inner"
 					},
 					swap_previous = {
-						["<leader>A"] = "@parameter.inner"
+						["<leader>sA"] = "@parameter.inner"
 					}
 				},
 				move = {
@@ -77,6 +77,16 @@ return {
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
+		end
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup({
+				trim_scope = "inner",
+				max_lines = 4,
+				multiline_threshold = 1
+			})
 		end
 	}
 }

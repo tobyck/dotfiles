@@ -47,6 +47,7 @@
 		# openssl
 		surge-cli
 		cargo-flamegraph
+		bc
 
 		# Screen capture
 		grim
