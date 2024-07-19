@@ -1,8 +1,9 @@
 export default {
 	nix: "nix-snowflake",
 	battery: {
-		charging: "\udb80\udc84",
+		lightning_bolt: "\udb85\udc0b",
 		normal: [
+			"\udb80\udc7b", // 10%
 			"\udb80\udc7b", // 10%
 			"\udb80\udc7c", // 20%
 			"\udb80\udc7d", // ...

@@ -62,18 +62,28 @@ const Workspaces = () => Widget.Box({
  */
 
 const Battery = () => {
-	let widget = Widget.Label({
-		class_name: "battery",
+	let battery_widget = Widget.Label({
+		class_name: "battery-icon",
 		tooltip_text: battery.bind("percent").as(p => `Battery: ${p}%`)
 	}).hook(battery, self => {
-		self.label = battery.charging
-			? icons.battery.charging
-			: icons.battery.normal[Math.floor(battery.percent / icons.battery.normal.length) - 1]
+		self.label = icons.battery.normal[Math.floor(battery.percent / icons.battery.normal.length) - 1]
 	})
 
-	widget.set_angle(-90)
+	battery_widget.set_angle(-90)
 
-	return widget
+	let is_charging_widget = Widget.Label({
+		class_name: "is-charging",
+		visible: battery.bind("charging"),
+		label: icons.battery.lightning_bolt
+	})
+
+	return Widget.Box({
+		spacing: 2,
+		children: [
+			battery_widget,
+			is_charging_widget
+		]
+	})
 }
 
 const Network = () => Widget.EventBox({
