@@ -81,8 +81,6 @@
 	# Enable CUPS to print documents
 	services.printing.enable = true;
 
-	sound.enable = true;
-
 	programs.fish.enable = true;
 
 	# uinput group for Kanata

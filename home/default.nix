@@ -32,7 +32,7 @@
 		hypridle
 		hyprlock
 		
-		# Terminal tools
+		# Terminal tools/CLIs
 		gh
 		tree
 		zoxide
@@ -44,10 +44,13 @@
 		ffmpeg
 		arduino-cli
 		mosquitto
-		# openssl
 		surge-cli
 		cargo-flamegraph
 		bc
+
+		# TUIs
+		bottom
+		lazygit
 
 		# Screen capture
 		grim
@@ -58,7 +61,6 @@
 		# Misc
 		starship
 		nitch
-		bottom
 		postman
 		hyprpicker
 
@@ -87,7 +89,6 @@
 		md = "mkdir -p";
 		rd = "rmdir";
 
-		# random notes for random things
 		notes = "$EDITOR ~/Documents/notes.md";
 	};
 }

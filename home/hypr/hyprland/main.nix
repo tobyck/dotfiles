@@ -53,7 +53,6 @@
 
 		master = {
 			allow_small_split = "yes";
-			new_is_master = "no";
 		};
 
 		windowrulev2 = [ "suppressevent maximize, class:.*" ];
