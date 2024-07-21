@@ -1,6 +1,7 @@
 return {
 	{
 		'neovim/nvim-lspconfig',
+		event = "BufReadPost",
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp'
 		},
@@ -55,6 +56,8 @@ return {
 			})
 
 			lspconfig.nil_ls.setup(default_setup)
+
+			lspconfig.typst_lsp.setup(default_setup)
 
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 			for type, icon in pairs(signs) do

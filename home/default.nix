@@ -63,15 +63,18 @@
 		nitch
 		postman
 		hyprpicker
+		typst
 
 		# Language servers
 		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
 		nodePackages.typescript-language-server
 		lua-language-server
 		nil # For Nix
+		typst-lsp
 
 		# Fonts
 		inter
+		ibm-plex
 		(nerdfonts.override { fonts = [ "Iosevka" ]; })
 	];
 

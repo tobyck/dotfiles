@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter-textobjects'
 		},
+		event = 'BufReadPost',
 		build = ':TSUpdate',
 		opts = {
 			ensure_installed = {
@@ -81,6 +82,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		event = "BufReadPost",
 		config = function()
 			require("treesitter-context").setup({
 				trim_scope = "inner",

@@ -66,7 +66,9 @@ const Battery = () => {
 		class_name: "battery-icon",
 		tooltip_text: battery.bind("percent").as(p => `Battery: ${p}%`)
 	}).hook(battery, self => {
-		self.label = icons.battery.normal[Math.floor(battery.percent / icons.battery.normal.length) - 1]
+		self.label = battery.percent == 100
+			? icons.battery.full
+			: icons.battery.range[~~(battery.percent / icons.battery.range.length)]
 	})
 
 	battery_widget.set_angle(-90)
