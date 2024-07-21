@@ -12,11 +12,11 @@
 	
 	environment.systemPackages = with pkgs; [
 		# Command line tools
-  	git
+		git
 		killall
 		config.boot.kernelPackages.perf
 
-    # System
+		# System
 		alsa-utils
 		brightnessctl
 		playerctl
