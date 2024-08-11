@@ -22,7 +22,9 @@ return {
 				'json',
 				'markdown',
 				'arduino',
-				'asm'
+				'asm',
+				'vue',
+				'python'
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

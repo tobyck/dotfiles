@@ -18,54 +18,114 @@
 )
 
 (deffakekeys
-	to-base (layer-switch colemak)
+	to-colemak-base (layer-switch colemak)
+	to-dvorak-base (layer-switch dvorak)
 )
 
 (defalias
 	;; layout switches
-	cmk (tap-hold 200 200 grv (layer-switch colemak))
-	qwt (tap-hold 200 200 grv (layer-switch qwerty))
+	cmk (layer-switch colemak)
+	qwt (layer-switch qwerty)
+	dvk (layer-switch dvorak)
+	up (layer-switch lmao)
 	spc (tap-hold 200 200 spc (layer-while-held misc))
+	msc (layer-while-held misc)
 
 	;; i need to work out what's going on here lol
-	tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-base tap 20))
+	colemak-tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-colemak-base tap 20))
+	dvorak-tap (multi (layer-switch dvorak-no-mods) (on-idle-fakekey to-dvorak-base tap 20))
 
 	;; colemak home row mods
-	a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @tap) lmet $lh-keys)
-	r (tap-hold-release-keys $tap-time2 $tap-time2 (multi r @tap) lalt $lh-keys)
-	s (tap-hold-release-keys $tap-time3 $tap-time3 (multi s @tap) lsft $lh-keys)
-	t (tap-hold-release-keys $tap-time4 $tap-time4 (multi t @tap) lctl $lh-keys)
-	n (tap-hold-release-keys $tap-time4 $tap-time4 (multi n @tap) rctl $rh-keys)
-	e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @tap) rsft $rh-keys)
-	i (tap-hold-release-keys $tap-time2 $tap-time2 (multi i @tap) ralt $rh-keys)
-	o (tap-hold-release-keys $tap-time1 $tap-time1 (multi o @tap) rmet $rh-keys)
+	a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @colemak-tap) lmet $lh-keys)
+	r (tap-hold-release-keys $tap-time2 $tap-time2 (multi r @colemak-tap) lalt $lh-keys)
+	s (tap-hold-release-keys $tap-time3 $tap-time3 (multi s @colemak-tap) lsft $lh-keys)
+	t (tap-hold-release-keys $tap-time4 $tap-time4 (multi t @colemak-tap) lctl $lh-keys)
+	n (tap-hold-release-keys $tap-time4 $tap-time4 (multi n @colemak-tap) rctl $rh-keys)
+	e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @colemak-tap) rsft $rh-keys)
+	i (tap-hold-release-keys $tap-time2 $tap-time2 (multi i @colemak-tap) ralt $rh-keys)
+	o (tap-hold-release-keys $tap-time1 $tap-time1 (multi o @colemak-tap) rmet $rh-keys)
+
+	;; dvorak hrm
+	d-a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @dvorak-tap) lmet $lh-keys)
+	d-o (tap-hold-release-keys $tap-time2 $tap-time2 (multi o @dvorak-tap) lalt $lh-keys)
+	d-e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @dvorak-tap) lsft $lh-keys)
+	d-u (tap-hold-release-keys $tap-time4 $tap-time4 (multi u @dvorak-tap) lctl $lh-keys)
+	d-h (tap-hold-release-keys $tap-time4 $tap-time4 (multi h @dvorak-tap) rctl $rh-keys)
+	d-t (tap-hold-release-keys $tap-time3 $tap-time3 (multi t @dvorak-tap) rsft $rh-keys)
+	d-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @dvorak-tap) ralt $rh-keys)
+	d-s (tap-hold-release-keys $tap-time1 $tap-time1 (multi s @dvorak-tap) rmet $rh-keys)
+
+	;; leader key for special chars
+	rld (tap-hold 200 200 sldr ralt)
+	lld (tap-hold 200 200 sldr lalt)
 
 	;; misc
-	emd (unicode —)
 	cw (caps-word 2000)
 )
 
+(defvirtualkeys
+	lower-a-macron (unicode ā)
+	lower-e-macron (unicode ē)
+	lower-i-macron (unicode ī)
+	lower-o-macron (unicode ō)
+	lower-u-macron (unicode ū)
+	em-dash (unicode  —)
+)
+
+(defseq
+	lower-a-macron (a)
+	lower-e-macron (e)
+	lower-i-macron (i)
+	lower-o-macron (o)
+	lower-u-macron (u)
+	em-dash (-)
+)
+
 (deflayer colemak
-	@qwt _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc @a   @r   @s   @t   d    h    @n   @e   @i   @o   _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
-	_    _    _              @spc           _    _
+	_    @lld  _              @spc          _    @rld
 )
 
 (deflayer colemak-no-mods
-	@qwt _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc a    r    s    t    d    h    n    e    i    o    _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
-	_    _    _              spc            _    _
+	_    @lld    _              spc            _    @rld
+)
+
+(deflayer dvorak
+	_    _    _    _    _    _    _    _    _    _    _    [    ]    _
+	_    '    ,    .    p    y    f    g    c    r    l    /    =    \
+	bspc @d-a @d-o @d-e @d-u i    d    @d-h @d-t @d-n @d-s -    _
+	_    ;    q    j    k    x    b    m    w    v    z    _
+	_    _    _              @spc           _    _
+)
+
+(deflayer dvorak-no-mods
+	_    _    _    _    _    _    _    _    _    _    _    [    ]    _
+	_    '    ,    .    p    y    f    g    c    r    l    /    =    \
+	bspc a    o    e    u    i    d    h    t    n    s    -    _
+	_    ;    q    j    k    x    b    m    w    v    z    _
+	_    _    _              @spc           _    _
+)
+
+(deflayer lmao
+	tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
+	bspc a    r    s    t    d    h    n    e    i    o    '    ret  XX
+	lsft z    x    c    v    b    k    m    ,    .    /    rsft XX
+	XX   XX   XX   XX   spc  XX   @msc XX   XX   XX   XX   XX
+	_    _    _              _              _    _
 )
 
 (deflayer misc
-	XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   @emd XX   XX
-	XX   XX   @cw  XX   XX   XX   XX   up   XX   XX   XX   XX   XX   XX
-	del  lmet lalt lsft lctl XX   left down rght ralt XX   XX   XX
-	_    XX   XX   caps XX   XX   XX   XX   XX   XX   XX   XX
+	XX   @cmk @qwt @dvk @up  XX   XX   XX   XX   XX   XX   XX   XX   XX
+	XX   XX   @cw  XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
+	del  lmet lalt lsft lctl XX   left rctl rsft ralt rmet XX   XX
+	_    XX   XX   caps XX   XX   up   f3   XX   XX   XX   XX
 	_    _    _              _              _    _
 )
 
@@ -74,5 +134,5 @@
 	_    _    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    
-    _    _    _              _              _    _  
+    _    _    _              @spc           _    _  
 )

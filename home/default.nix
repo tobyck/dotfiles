@@ -67,10 +67,12 @@
 
 		# Language servers
 		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
-		nodePackages.typescript-language-server
+		typescript-language-server
 		lua-language-server
-		nil # For Nix
+		nil # Nix
 		typst-lsp
+		nodePackages.vls # Vue
+		pyright
 
 		# Fonts
 		inter

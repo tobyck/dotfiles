@@ -35,17 +35,17 @@ return {
 				return orig_open_floating_preview(contents, syntax, opts, ...)
 			end
 
-			local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
+			local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 			local default_setup = {
-				capabilities = lsp_capabilites
+				capabilities = default_capabilities
 			}
 
 			lspconfig.rust_analyzer.setup(default_setup)
-			lspconfig.tsserver.setup(default_setup)
+			lspconfig.tsserver.setup(default_capabilities)
 
 			lspconfig.lua_ls.setup({
-				capabilities = lsp_capabilites,
+				capabilities = default_capabilities,
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -56,8 +56,9 @@ return {
 			})
 
 			lspconfig.nil_ls.setup(default_setup)
-
 			lspconfig.typst_lsp.setup(default_setup)
+			lspconfig.vuels.setup(default_setup)
+			lspconfig.pyright.setup(default_setup)
 
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 			for type, icon in pairs(signs) do

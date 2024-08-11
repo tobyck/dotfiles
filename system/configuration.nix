@@ -24,7 +24,7 @@
 
 		# Languages
 		cargo rustc rustup
-		nodejs bun
+		nodejs bun typescript
 		python3
 		clang
 		sassc

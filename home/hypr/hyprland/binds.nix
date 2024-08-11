@@ -10,8 +10,8 @@
 		range = n: builtins.genList (i: i) n;
 
 		left = "h";
-		right = "e";
-		arrows = [ left "n" "l" right ];
+		right = "l";
+		arrows = [ left "j" "k" right ];
 
 		arrows-for = binding-func: args: map
 			(i: binding-func (builtins.elemAt arrows i) (builtins.elemAt args i))
@@ -46,7 +46,7 @@
 
 			# Misc
 			"$mainMod, B, exec, hyprctl dispatch toggleopaque"
-			"$mainMod CTRL, L, exec, hyprlock"
+			"$mainMod CTRL SHIFT, L, exec, hyprlock"
 			"$mainMod SHIFT ALT, R, exec, ags -q && ags" # Restart AGS
 			"$mainMod SHIFT, P, exec, wl-copy $(hyprpicker)"
 
