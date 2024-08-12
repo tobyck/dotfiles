@@ -7,6 +7,7 @@
 
 		./programs/nvim
 		./programs/firefox.nix
+		./programs/cava.nix
 
 		./services/kanata
 
