@@ -3,7 +3,7 @@ My Nix dotfiles (currently just [NixOS on Apple Silicon](https://nixos.wiki/wiki
 <details>
     <summary>Screenshots</summary>
     <img src="./home/screenshots/nitch_and_cava.png">
-    <img src="./home/screenshots/neovim.png.png">
+    <img src="./home/screenshots/neovim.png">
 </details>
 
 | | |
