@@ -2,10 +2,10 @@
 	wayland.windowManager.hyprland.settings = let
 		binding = mods: type: key: arg: "${mods}, ${key}, ${type}, ${arg}";
 		move-focus = binding "$mainMod" "movefocus";
-		resize-active = binding "$mainMod ALT SHIFT" "resizeactive";
+		resize-active = binding "$mainMod ALT CTRL" "resizeactive";
 		move-to-ws = binding "$mainMod SHIFT" "movetoworkspace";
 		go-to-ws = mods: binding "$mainMod ${mods}" "workspace";
-		move-window = binding "$mainMod SHIFT" "movewindow";
+		move-window = binding "$mainMod CTRL" "movewindow";
 
 		range = n: builtins.genList (i: i) n;
 
@@ -22,8 +22,8 @@
 		bash-get-date = "$(date +%Y%m%d-%H%M%S)";
 
 		screen-capture-binds = [
-			"$mainMod, S, exec, IMG=~/Pictures/Screenshots/screenshot-${bash-get-date}.png && grim $IMG && wl-copy < $IMG" # Screenshot the whole screen then copy to clipboard
-			"$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # Screenshot selected area then open with swappy 
+			"$mainMod, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # Screenshot selected area then open with swappy
+			"$mainMod SHIFT, S, exec, IMG=~/Pictures/Screenshots/screenshot-${bash-get-date}.png && grim $IMG && wl-copy < $IMG" # Screenshot the whole screen then copy to clipboard
 			"$mainMod ALT, S, exec, $screen_rec ~/Videos/Screen\\ Recordings/screenrec-${bash-get-date}.mp4" # Record selected area
 			"$mainMod ALT SHIFT, S, exec, killall -s SIGINT wf-recorder" # Stop recording
 		];
@@ -50,8 +50,8 @@
 			"$mainMod SHIFT ALT, R, exec, ags -q && ags" # Restart AGS
 			"$mainMod SHIFT, P, exec, wl-copy $(hyprpicker)"
 
-			(go-to-ws "CTRL" left "e-1")
-			(go-to-ws "CTRL" right "e+1")
+			(go-to-ws "SHIFT" left "e-1")
+			(go-to-ws "SHIFT" right "e+1")
 		]
 		++ (arrows-for move-focus [ "l" "d" "u" "r" ])
 		++ (arrows-for move-window [ "l" "d" "u" "r" ])

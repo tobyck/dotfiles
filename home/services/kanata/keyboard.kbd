@@ -9,8 +9,8 @@
 (defvar
 	tap-time1 220
 	tap-time2 220
-	tap-time3 180
-	tap-time4 180
+	tap-time3 170
+	tap-time4 170
 
 	;; for home row mod early taps
 	lh-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
@@ -35,25 +35,34 @@
 	colemak-tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-colemak-base tap 20))
 	dvorak-tap (multi (layer-switch dvorak-no-mods) (on-idle-fakekey to-dvorak-base tap 20))
 
+	md1 lmet
+	md2 lalt
+	md3 lctl
+	md4 lsft
+	md5 rsft
+	md6 rctl
+	md7 ralt
+	md8 rmet
+
 	;; colemak home row mods
-	a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @colemak-tap) lmet $lh-keys)
-	r (tap-hold-release-keys $tap-time2 $tap-time2 (multi r @colemak-tap) lalt $lh-keys)
-	s (tap-hold-release-keys $tap-time3 $tap-time3 (multi s @colemak-tap) lsft $lh-keys)
-	t (tap-hold-release-keys $tap-time4 $tap-time4 (multi t @colemak-tap) lctl $lh-keys)
-	n (tap-hold-release-keys $tap-time4 $tap-time4 (multi n @colemak-tap) rctl $rh-keys)
-	e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @colemak-tap) rsft $rh-keys)
-	i (tap-hold-release-keys $tap-time2 $tap-time2 (multi i @colemak-tap) ralt $rh-keys)
-	o (tap-hold-release-keys $tap-time1 $tap-time1 (multi o @colemak-tap) rmet $rh-keys)
+	a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @colemak-tap) @md1 $lh-keys)
+	r (tap-hold-release-keys $tap-time2 $tap-time2 (multi r @colemak-tap) @md2 $lh-keys)
+	s (tap-hold-release-keys $tap-time3 $tap-time3 (multi s @colemak-tap) @md3 $lh-keys)
+	t (tap-hold-release-keys $tap-time4 $tap-time4 (multi t @colemak-tap) @md4 $lh-keys)
+	n (tap-hold-release-keys $tap-time4 $tap-time4 (multi n @colemak-tap) @md5 $rh-keys)
+	e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @colemak-tap) @md6 $rh-keys)
+	i (tap-hold-release-keys $tap-time2 $tap-time2 (multi i @colemak-tap) @md7 $rh-keys)
+	o (tap-hold-release-keys $tap-time1 $tap-time1 (multi o @colemak-tap) @md8 $rh-keys)
 
 	;; dvorak hrm
-	d-a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @dvorak-tap) lmet $lh-keys)
-	d-o (tap-hold-release-keys $tap-time2 $tap-time2 (multi o @dvorak-tap) lalt $lh-keys)
-	d-e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @dvorak-tap) lsft $lh-keys)
-	d-u (tap-hold-release-keys $tap-time4 $tap-time4 (multi u @dvorak-tap) lctl $lh-keys)
-	d-h (tap-hold-release-keys $tap-time4 $tap-time4 (multi h @dvorak-tap) rctl $rh-keys)
-	d-t (tap-hold-release-keys $tap-time3 $tap-time3 (multi t @dvorak-tap) rsft $rh-keys)
-	d-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @dvorak-tap) ralt $rh-keys)
-	d-s (tap-hold-release-keys $tap-time1 $tap-time1 (multi s @dvorak-tap) rmet $rh-keys)
+	d-a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @dvorak-tap) @md1 $lh-keys)
+	d-o (tap-hold-release-keys $tap-time2 $tap-time2 (multi o @dvorak-tap) @md2 $lh-keys)
+	d-e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @dvorak-tap) @md3 $lh-keys)
+	d-u (tap-hold-release-keys $tap-time4 $tap-time4 (multi u @dvorak-tap) @md4 $lh-keys)
+	d-h (tap-hold-release-keys $tap-time4 $tap-time4 (multi h @dvorak-tap) @md5 $rh-keys)
+	d-t (tap-hold-release-keys $tap-time3 $tap-time3 (multi t @dvorak-tap) @md6 $rh-keys)
+	d-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @dvorak-tap) @md7 $rh-keys)
+	d-s (tap-hold-release-keys $tap-time1 $tap-time1 (multi s @dvorak-tap) @md8 $rh-keys)
 
 	;; leader key for special chars
 	rld (tap-hold 200 200 sldr ralt)
@@ -124,7 +133,7 @@
 (deflayer misc
 	XX   @cmk @qwt @dvk @up  XX   XX   XX   XX   XX   XX   XX   XX   XX
 	XX   XX   @cw  XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
-	del  lmet lalt lsft lctl XX   left rctl rsft ralt rmet XX   XX
+	del  @md1 @md2 @md3 @md4 XX   left @md5 @md6 @md7 @md8 XX   XX
 	_    XX   XX   caps XX   XX   up   f3   XX   XX   XX   XX
 	_    _    _              _              _    _
 )
