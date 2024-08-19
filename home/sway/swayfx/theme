@@ -1,0 +1,16 @@
+output * bg /etc/nixos/home/wallpapers/snowflake1.png fill
+
+default_border pixel 1
+gaps inner 8
+gaps outer 0
+
+set $fbc #a9b1d6
+set $ufbc #565f89
+client.focused $fbc $fbc $fbc $fbc $fbc
+client.unfocused $ufbc $ufbc $ufbc $ufbc $ufbc
+
+# swayfx stuff
+corner_radius 8
+shadows on
+shadow_blur_radius 5
+shadow_color #202020

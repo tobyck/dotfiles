@@ -11,7 +11,9 @@
 
 		./services/kanata
 
+		./sway
 		./hypr
+		./gtk.nix
 	];
 
 	home = {
@@ -32,6 +34,7 @@
 		swaybg
 		hypridle
 		hyprlock
+		swaylock-fancy
 		
 		# Terminal tools/CLIs
 		gh
@@ -48,6 +51,7 @@
 		surge-cli
 		cargo-flamegraph
 		bc
+		jq
 
 		# TUIs
 		bottom
@@ -71,7 +75,7 @@
 		typescript-language-server
 		lua-language-server
 		nil # Nix
-		typst-lsp
+		# typst-lsp (this is causing a compiler error at the moment)
 		nodePackages.vls # Vue
 		pyright
 
@@ -96,5 +100,12 @@
 		rd = "rmdir";
 
 		notes = "$EDITOR ~/Documents/notes.md";
+	};
+
+	home.pointerCursor = {
+		gtk.enable = true;
+		package = pkgs.apple-cursor;
+		name = "macOS-BigSur";
+		size = 24;
 	};
 }

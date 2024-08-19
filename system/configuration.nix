@@ -37,8 +37,13 @@
 	};
 
 	programs.hyprland = {
-		enable = true;
+		enable = false;
 		package = inputs.hyprland.packages.${pkgs.system}.default;
+	};
+
+	programs.sway = {
+		enable = true;
+		package = pkgs.swayfx;
 	};
 
 	# Idk what this does but apparently I need it

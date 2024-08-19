@@ -10,11 +10,16 @@
 		};
 
 		apple-silicon = {
-			url = "github:tpwrules/nixos-apple-silicon/3410fe09c4d6e23f0757499b8da89d15bede1f00";
+			url = "github:tpwrules/nixos-apple-silicon/8a665fee82901878edaeb8ee120296a979db2dd2";
 			# inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		hyprland.url = "github:hyprwm/Hyprland/0c513ba91bd73106be99e35b1a020d24e5ae874a";
+		/* hyprland = {
+			type = "git";
+			url = "https://github.com/hyprwm/Hyprland";
+			rev = "0c513ba91bd73106be99e35b1a020d24e5ae874a";
+			submodules = true;
+		}; */
 
 		ags.url = "github:Aylur/ags";
 	};

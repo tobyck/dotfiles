@@ -1,6 +1,7 @@
 import icons from "lib/icons"
 import { range } from "lib/utils"
 import Gtk from "types/@girs/gtk-3.0/gtk-3.0"
+import { Widget as WidgetType } from "types/@girs/gtk-3.0/gtk-3.0.cjs"
 
 const SHORT_DATE_FORMAT = "%a %b %-d"
 const LONG_DATE_FORMAT = "%A %B %-e %Y"
@@ -10,10 +11,16 @@ const LEFT_SIDE_BAR_SPACING = 6
 const RIGHT_SIDE_BAR_SPACING = 14
 const BAR_SUB_GROUP_SPACING = 12
 
-const hyprland = await Service.import("hyprland")
+enum WM { Hyprland, Sway }
+
+const wm: WM = Utils.exec("sway --get-socketpath") === "sway socket not detected."
+	? WM.Hyprland
+	: WM.Sway
+
 const battery = await Service.import("battery")
 const network = await Service.import("network")
 const audio = await Service.import("audio")
+const applications = await Service.import("applications")
 const date = Variable("", { poll: [60000, `date "+${SHORT_DATE_FORMAT}"`] })
 const time = Variable("", { poll: [1000, `date "+${TIME_FORMAT}"`] })
 
@@ -21,41 +28,136 @@ const time = Variable("", { poll: [1000, `date "+${TIME_FORMAT}"`] })
  * Left widgets
  */
 
-const Logo = () => Widget.Icon({
-	class_name: "logo",
-	icon: icons.nix
-})
+const Launcher = () => {
+	const defaultText = "Run something..."
 
-const AppName = () => Widget.Label({
-	class_name: "app-name",
-}).hook(hyprland.active.client, self => {
-	let c = hyprland.active.client.class
-	if (c) {
-		self.label = c
-		self.visible = true;
+	const input = Variable("")
+	const autocompletedPart = Variable(defaultText)
+	const icon = Variable(icons.nix)
+	const appToLaunch = Variable<any>(null) // couldn't figure out what the type signature should be
+
+	const reset = (resetEntry = true, _autocompletedPart = defaultText) => {
+		if (resetEntry) {
+			input.value = ""
+			entry.set_text("")
+		}
+		autocompletedPart.value = _autocompletedPart
+		icon.value = icons.nix
+		appToLaunch.value = null
 	}
-	else self.visible = false
-})
+
+	const entry = Widget.Entry({
+		class_name: "launcher-entry",
+		max_length: 60,
+		on_change: ({ text }) => {
+			input.value = text ?? ""
+
+			if (text) {
+				const appAndMatch = applications.query("")
+					.map(app => ({
+						app,
+						match: app.name.toLowerCase().match(input.value.toLowerCase())
+					}))
+					.filter(app => app.match)?.[0]
+
+				if (appAndMatch) {
+					const { app, match } = appAndMatch
+					appToLaunch.value = app
+					autocompletedPart.value = match!.input!.slice(match!.index! + match![0]!.length)
+					icon.value = app.icon_name!
+				} else reset(false, "")
+			} else {
+				reset()
+			}
+		},
+		on_accept: () => {
+			if (appToLaunch.value) {
+				appToLaunch.value.launch()
+				reset()
+			}
+		}
+	})
+
+	return Widget.Box({
+		children: [
+			Widget.Icon({
+				class_name: "icon",
+				icon: icon.bind()
+			}),
+			Widget.Overlay({
+				child: entry,
+				overlays: [
+					Widget.Box({
+						class_name: "autocomplete-box",
+						children: [
+							Widget.Label({
+								hpack: "start",
+								class_name: "launcher-entry-display",
+								label: input.bind()
+							}),
+							Widget.Label({
+								class_name: "launcher-autocomplete",
+								label: autocompletedPart.bind()
+							})
+						]
+					})
+				]
+			})
+		]
+	})
+}
 
 /*
  * Centre widgets
  */
 
-const Workspaces = () => Widget.Box({
-	class_name: "workspaces",
-	spacing: 3,
-	children: range(9).map(i => 
-		Widget.EventBox({
-			on_primary_click: _ => Utils.exec("hyprctl dispatch workspace " + i),
-			vpack: "center",
-			child: Widget.Label().hook(hyprland, self => {
-				self.label = hyprland.active.workspace.id === i ? i.toString() : ""
-				self.toggleClassName("active", hyprland.active.workspace.id === i)
-				self.toggleClassName("occupied", (hyprland.getWorkspace(i)?.windows || 0) > 0)
+let Workspaces: () => WidgetType
+
+if (wm === WM.Hyprland) {
+	const hyprland = await Service.import("hyprland")
+	Workspaces = () => Widget.Box({
+		class_name: "workspaces",
+		spacing: 3,
+		children: range(9).map(i => 
+			Widget.EventBox({
+				on_primary_click: _ => Utils.exec("hyprctl dispatch workspace " + i),
+				vpack: "center",
+				child: Widget.Label().hook(hyprland, self => {
+					self.label = hyprland.active.workspace.id === i ? i.toString() : ""
+					self.toggleClassName("active", hyprland.active.workspace.id === i)
+					self.toggleClassName("occupied", (hyprland.getWorkspace(i)?.windows || 0) > 0)
+				})
+			})
+		)
+	})
+} else {
+	Workspaces = () => Widget.Box({
+		class_name: "workspaces",
+		spacing: 3
+	}).poll(200, self => {
+		let activeWorkspace: number, occupiedWorkspaces: number[] = []
+
+		Utils.exec(`fish -c "swaymsg -t get_workspaces | jq -r '.[] | \\"\\(.name) \\(.focused)\\"'"`)
+			.split("\n")
+			.forEach(l => {
+				const [id, focused] = l.split(" ")
+				occupiedWorkspaces.push(parseInt(id))
+				if (focused === "true") activeWorkspace = parseInt(id)
+			})
+
+		self.children = range(10).map(i => {
+			const label = Widget.Label(i === activeWorkspace ? i.toString() : "")
+			label.toggleClassName("active", i === activeWorkspace)
+			label.toggleClassName("occupied", occupiedWorkspaces.includes(i))
+
+			return Widget.EventBox({
+				on_primary_click: _ => Utils.execAsync("swaymsg workspace " + i),
+				vpack: "center",
+				child: label
 			})
 		})
-	)
-})
+	})
+}
 
 /*
  * Right widgets
@@ -144,9 +246,7 @@ const LeftWidgets = () => Widget.Box({
 	spacing: LEFT_SIDE_BAR_SPACING,
 	hpack: "start",
 	children: [
-		Logo(),
-		AppName()
-		// SubGroup([AppName()])
+		Launcher()
 	]
 })
 
@@ -172,6 +272,7 @@ export default (monitor: number = 0) => Widget.Window({
 	class_name: "bar",
 	anchor: ["top", "left", "right"],
 	margins: [0, 8],
+    keymode: "on-demand",
 	exclusivity: "exclusive", // make the bar push windows out of the way to make space
 	child: Widget.CenterBox({
 		startWidget: LeftWidgets(),

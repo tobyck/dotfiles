@@ -1,0 +1,8 @@
+input "type:touchpad" {
+	tap disabled
+	natural_scroll enabled
+}
+
+input "type:keyboard" {
+	xkb_layout us
+}

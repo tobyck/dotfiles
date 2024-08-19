@@ -44,14 +44,4 @@
 			];
 		};
 	};
-
-	home.pointerCursor = {
-		gtk.enable = true;
-		# package = pkgs.bibata-cursors;
-		# name = "Bibata-Modern-Classic";
-		# size = 22;
-		package = pkgs.apple-cursor;
-		name = "macOS-BigSur";
-		size = 24;
-	};
 }

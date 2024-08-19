@@ -1,0 +1,6 @@
+include ./devices
+include ./binds
+include ./theme
+
+exec_always ags -q && ags
+exec hypridle

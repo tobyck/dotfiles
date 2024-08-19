@@ -21,13 +21,38 @@ window.bar {
   .subgroup, .app-name {
     background-color: $bg_highlight;
     padding: 2.5px 7px;
-    border-radius: 3.5pt;
+    border-radius: calc(5px);
     color: $fg;
-    margin: $padding 0; 
+    margin: 4px 0 $padding 0;
   }
 
-  .logo {
+  .launcher-entry {
+    min-height: 16px;
+    border: none;
+    box-shadow: none;
+    color: transparent;
+    background-color: transparent;
+    margin-left: -2px;
+    min-width: 350px;
+  }
+
+  .launcher-entry selection {
+    color: transparent;
+    background-color: $fg_gutter;
+  }
+
+  .autocomplete-box {
+    margin-left: 5px;
+  }
+
+  .launcher-autocomplete {
+    color: $comment;
+    margin-left: 1px;
+  }
+
+  .icon {
     font-size: 12px;
+    margin-left: -2px;
   }
 
   .workspaces {
@@ -37,7 +62,6 @@ window.bar {
       min-height: 5pt;
       background-color: $bg;
       border-radius: 50%;
-      transition: 0.15s ease all;
 
       &.occupied {
         border-radius: 30%;
