@@ -13,8 +13,8 @@
 	tap-time4 170
 
 	;; for home row mod early taps
-	lh-keys (q w e r t g z x c v spc bspc tab esc mlft mrgt)
-	rh-keys (y u i o p h n m , . / spc bspc tab esc mlft mrgt)
+	lh-keys (q w e r t g z x c v)
+	rh-keys (y u i o p h n m , . /)
 )
 
 (deffakekeys
@@ -134,7 +134,7 @@
 	XX   @cmk @qwt @dvk @up  XX   XX   XX   XX   XX   XX   XX   XX   XX
 	XX   XX   @cw  XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
 	del  @md1 @md2 @md3 @md4 XX   left @md5 @md6 @md7 @md8 XX   XX
-	_    XX   XX   caps XX   XX   up   f3   XX   XX   XX   XX
+	_    XX   XX   caps XX   XX   up   XX   XX   XX   XX   XX
 	_    _    _              _              _    _
 )
 

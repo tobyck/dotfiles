@@ -9,7 +9,11 @@ return {
 			gitsigns.setup({
 				signs = {
 					add = { text = "│" },
-					change = { text = "│" },
+					change = { text = "│" }
+				},
+				signs_staged = {
+					add = { text = "│" },
+					change = { text = "│" }
 				}
 			})
 

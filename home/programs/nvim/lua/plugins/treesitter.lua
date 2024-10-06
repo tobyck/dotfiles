@@ -24,7 +24,8 @@ return {
 				'arduino',
 				'asm',
 				'vue',
-				'python'
+				'python',
+				'ocaml'
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -63,7 +64,7 @@ return {
 						["<leader>]a"] = "@parameter.inner"
 					},
 					swap_previous = {
-						["<leader>[A"] = "@parameter.inner"
+						["<leader>[a"] = "@parameter.inner"
 					}
 				},
 				move = {

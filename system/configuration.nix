@@ -11,6 +11,8 @@
 	nixpkgs.config.allowUnfree = true;
 	
 	environment.systemPackages = with pkgs; [
+		greetd.tuigreet
+
 		# Command line tools
 		git
 		killall
@@ -30,23 +32,38 @@
 		sassc
 	];
 
-	# Speed up Hyprland install
-	nix.settings = {
-		substituters = [ "https://hyprland.cachix.org" ];
-		trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+	# uinput group for Kanata
+	users.groups.uinput = {};
+	services.udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"'';
+
+	programs.fish.enable = true;
+
+	users.users.toby = {
+		isNormalUser = true;
+		extraGroups = [
+			"wheel" # Root permissions
+
+			# Input groups for Kanata to work
+			"uinput"
+			"input" # There's no way that this is safe lol
+
+			# So that I can read from USB devices like Arduinos
+			"dialout"
+		];
+		initialPassword = "password";
+		shell = pkgs.fish;
 	};
 
-	programs.hyprland = {
-		enable = false;
-		package = inputs.hyprland.packages.${pkgs.system}.default;
-	};
-
-	programs.sway = {
+	services.greetd = {
 		enable = true;
-		package = pkgs.swayfx;
+		settings = {
+			default_session = {
+				user = "toby";
+				command = "tuigreet --cmd sway";
+			};
+		};
 	};
 
-	# Idk what this does but apparently I need it
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = false;
 
@@ -70,7 +87,35 @@
 	# NZ
 	time.timeZone = "Pacific/Auckland";
 
-	# X config just in case Hyprland has a meltdown
+	# Enable CUPS
+	services.printing = {
+		enable = true;
+	};
+
+	# I only added this to automatically discover printers
+	# I have no clue what nssmdns4 means
+	services.avahi = {
+		enable = true;
+		nssmdns4 = true;
+		openFirewall = true;
+	};
+
+	nix.settings = {
+		substituters = [ "https://hyprland.cachix.org" ];
+		trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+	};
+
+	programs.hyprland = {
+		enable = false;
+		package = inputs.hyprland.packages.${pkgs.system}.default;
+	};
+
+	programs.sway = {
+		enable = true;
+		package = pkgs.swayfx;
+	};
+
+	# X config just in case Wayland has a meltdown
 	services.xserver = {
 		enable = true;
 		desktopManager.xfce.enable = true;
@@ -82,31 +127,6 @@
 
 	# Use xkb options in tty
 	console.useXkbConfig = true;
-
-	# Enable CUPS to print documents
-	services.printing.enable = true;
-
-	programs.fish.enable = true;
-
-	# uinput group for Kanata
-	users.groups.uinput = {};
-	services.udev.extraRules = ''KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"'';
-
-	users.users.toby = {
-		isNormalUser = true;
-		extraGroups = [
-			"wheel" # Root permissions
-
-			# Input groups for Kanata to work
-			"uinput"
-			"input" # There's no way that this is safe lol
-
-			# So that I can read from USB devices like Arduinos
-			"dialout"
-		];
-		initialPassword = "password";
-		shell = pkgs.fish;
-	};
 
 	# Don't change this unless you really know what you're doing
 	system.stateVersion = "24.05";

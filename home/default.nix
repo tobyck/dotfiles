@@ -8,6 +8,7 @@
 		./programs/nvim
 		./programs/firefox.nix
 		./programs/cava.nix
+		./programs/tmux.nix
 
 		./services/kanata
 
@@ -52,10 +53,15 @@
 		cargo-flamegraph
 		bc
 		jq
+		pandoc
 
 		# TUIs
 		bottom
 		lazygit
+
+		# GUIs
+		postman
+		obsidian
 
 		# Screen capture
 		grim
@@ -66,9 +72,7 @@
 		# Misc
 		starship
 		nitch
-		postman
 		hyprpicker
-		typst
 
 		# Language servers
 		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
@@ -100,6 +104,10 @@
 		rd = "rmdir";
 
 		notes = "$EDITOR ~/Documents/notes.md";
+	};
+
+	home.sessionVariables = {
+		NIXOS_OZONE_WL = 1;
 	};
 
 	home.pointerCursor = {

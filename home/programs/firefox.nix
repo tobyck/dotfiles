@@ -13,6 +13,10 @@ in {
 				"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 				"browser.urlbar.maxRichResults" = 0;
 			};
+			userChrome = ''
+				#TabsToolbar { visibility: collapse; }
+				#navigator-toolbox { padding-top: 4px !important; }
+			'';
 		};
 	};
 

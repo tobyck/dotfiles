@@ -15,6 +15,7 @@ return {
 				{ '<leader>fg', builtin.live_grep },
 				{ '<leader>fb', builtin.buffers },
 				{ '<leader>fs', telescope.extensions.file_browser.file_browser },
+				{ '<leader>fr', builtin.resume },
 				{ '<leader>u', '<cmd>Telescope undo<CR>' }
 			}
 		end,

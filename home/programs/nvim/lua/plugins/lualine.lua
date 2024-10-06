@@ -5,16 +5,16 @@ return {
 		config = function()
 			require('lualine').setup {
 				options = {
-					section_separators = { left = '', right = '' },
+					section_separators = '',
 					component_separators = ''
 				},
 				sections = {
-					lualine_a = { { 'mode', separator = { left = '', right = '' } } },
+					lualine_a = { { 'mode' } },
 					lualine_b = { 'branch', 'diff' },
-					lualine_c = { 'file' },
-					lualine_x = { 'filetype', 'encoding' },
+					lualine_c = { 'filename' },
+					lualine_x = { 'encoding' },
 					lualine_y = { 'progress' },
-					lualine_z = { { 'location', separator = { left = '', right = '' } } }
+					lualine_z = { { 'location' } }
 				},
 				inactive_sections = {
 					lualine_a = { 'filename' },
