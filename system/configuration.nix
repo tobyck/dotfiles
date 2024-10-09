@@ -58,7 +58,6 @@
 		enable = true;
 		settings = {
 			default_session = {
-				user = "toby";
 				command = "tuigreet --cmd sway";
 			};
 		};

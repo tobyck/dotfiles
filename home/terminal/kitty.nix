@@ -1,21 +1,13 @@
 {
-	programs.kitty = let
-		font = "Iosevka NF";
-	in {
+	programs.kitty = {
 		enable = true;
 
-		theme = "Tokyo Night";
+		themeFile = "tokyo_night_night";
 
 		font = {
-			name = font;
+			name = "Iosevka NF";
 			size = 9.2;
 		};
-
-		extraConfig = ''
-			bold_font ${font} Bold
-			italic_font ${font} Italic
-			bold_italic_font ${font} Bold Italic
-		'';
 
 		settings = {
 			window_padding_width = 4;

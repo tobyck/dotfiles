@@ -10,7 +10,7 @@
 		};
 
 		apple-silicon = {
-			url = "github:tpwrules/nixos-apple-silicon/8a665fee82901878edaeb8ee120296a979db2dd2";
+			url = "github:tpwrules/nixos-apple-silicon/c5f944f49a052232015bb3c03524b69e3fdd2aa4";
 			# inputs.nixpkgs.follows = "nixpkgs";
 		};
 
