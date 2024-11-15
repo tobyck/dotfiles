@@ -118,10 +118,8 @@
 	services.xserver = {
 		enable = true;
 		desktopManager.xfce.enable = true;
+		# Sway xkb config changes this to Māori, and Kanata does all the Colemak and HRM stuff
 		xkb.layout = "us";
-		# Kanata handles this now
-		# xkb.variant = "colemak";
-		# xkb.options = "caps:backspace";
 	};
 
 	# Use xkb options in tty

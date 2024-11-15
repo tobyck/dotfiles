@@ -33,10 +33,21 @@ require("options")
 require("keymap")
 
 vim.cmd("colorscheme tokyonight")
-vim.cmd("set spell")
+
+local spellcheck_file_types = { "gitcommit", "rust", "c", "typescript", "javascript", "python" }
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  desc = "Enable spellcheck for certain file types",
+  group = vim.api.nvim_create_augroup("spellcheck", { clear = true }),
+  pattern = spellcheck_file_types,
+  callback = function()
+    vim.opt_local.spell = true
+  end
+})
 
 -- do stuff when an lsp attaches
 vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "Configure general LSP settings",
 	group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
 	callback = function(event)
 		local function bufmap(modes, keys, action)

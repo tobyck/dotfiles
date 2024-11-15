@@ -61,7 +61,17 @@
 
 		# GUIs
 		postman
-		obsidian
+		(obsidian.overrideAttrs (oldAttrs: rec {
+			desktopItem = oldAttrs.desktopItem.override (oldDesktopItem: {
+				exec = "${oldDesktopItem.exec} --ozone-platform-hint=auto";
+			});
+			installPhase = builtins.replaceStrings
+				[ "${oldAttrs.desktopItem}" ]
+				[ "${desktopItem}" ]
+				oldAttrs.installPhase;
+		}))
+		nautilus
+		deja-dup
 
 		# Screen capture
 		grim
@@ -101,12 +111,6 @@
 
 		md = "mkdir -p";
 		rd = "rmdir";
-
-		notes = "$EDITOR ~/Documents/notes.md";
-	};
-
-	home.sessionVariables = {
-		NIXOS_OZONE_WL = 1;
 	};
 
 	home.pointerCursor = {

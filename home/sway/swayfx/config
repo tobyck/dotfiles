@@ -2,5 +2,6 @@ include ./devices
 include ./binds
 include ./theme
 
+exec systemctl --user import-environment
 exec_always ags -q && ags
 exec hypridle

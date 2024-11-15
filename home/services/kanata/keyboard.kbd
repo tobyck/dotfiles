@@ -27,7 +27,6 @@
 	cmk (layer-switch colemak)
 	qwt (layer-switch qwerty)
 	dvk (layer-switch dvorak)
-	up (layer-switch lmao)
 	spc (tap-hold 200 200 spc (layer-while-held misc))
 	msc (layer-while-held misc)
 
@@ -35,6 +34,7 @@
 	colemak-tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-colemak-base tap 20))
 	dvorak-tap (multi (layer-switch dvorak-no-mods) (on-idle-fakekey to-dvorak-base tap 20))
 
+	;; mods
 	md1 lmet
 	md2 lalt
 	md3 lctl
@@ -64,30 +64,8 @@
 	d-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @dvorak-tap) @md7 $rh-keys)
 	d-s (tap-hold-release-keys $tap-time1 $tap-time1 (multi s @dvorak-tap) @md8 $rh-keys)
 
-	;; leader key for special chars
-	rld (tap-hold 200 200 sldr ralt)
-	lld (tap-hold 200 200 sldr lalt)
-
 	;; misc
 	cw (caps-word 2000)
-)
-
-(defvirtualkeys
-	lower-a-macron (unicode ā)
-	lower-e-macron (unicode ē)
-	lower-i-macron (unicode ī)
-	lower-o-macron (unicode ō)
-	lower-u-macron (unicode ū)
-	em-dash (unicode  —)
-)
-
-(defseq
-	lower-a-macron (a)
-	lower-e-macron (e)
-	lower-i-macron (i)
-	lower-o-macron (o)
-	lower-u-macron (u)
-	em-dash (-)
 )
 
 (deflayer colemak
@@ -95,7 +73,7 @@
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc @a   @r   @s   @t   d    h    @n   @e   @i   @o   _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
-	_    @lld  _              @spc          _    @rld
+	_    _    _              @spc           _    _
 )
 
 (deflayer colemak-no-mods
@@ -103,7 +81,7 @@
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc a    r    s    t    d    h    n    e    i    o    _    _
 	_    z    x    c    v    b    k    m    ,    .    /    _
-	_    @lld    _              spc            _    @rld
+	_    _    _              spc            _    _
 )
 
 (deflayer dvorak
@@ -122,16 +100,8 @@
 	_    _    _              @spc           _    _
 )
 
-(deflayer lmao
-	tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
-	bspc a    r    s    t    d    h    n    e    i    o    '    ret  XX
-	lsft z    x    c    v    b    k    m    ,    .    /    rsft XX
-	XX   XX   XX   XX   spc  XX   @msc XX   XX   XX   XX   XX
-	_    _    _              _              _    _
-)
-
 (deflayer misc
-	XX   @cmk @qwt @dvk @up  XX   XX   XX   XX   XX   XX   XX   XX   XX
+	XX   @cmk @qwt @dvk XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
 	XX   XX   @cw  XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
 	del  @md1 @md2 @md3 @md4 XX   left @md5 @md6 @md7 @md8 XX   XX
 	_    XX   XX   caps XX   XX   up   XX   XX   XX   XX   XX
