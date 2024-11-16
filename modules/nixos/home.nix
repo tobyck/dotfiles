@@ -89,9 +89,9 @@
 		typescript-language-server
 		lua-language-server
 		nil # Nix
-		# typst-lsp (this is causing a compiler error at the moment)
 		nodePackages.vls # Vue
 		pyright
+		emmet-ls
 
 		# Fonts
 		inter

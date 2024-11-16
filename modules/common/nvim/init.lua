@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local small_indent_file_types = { "nix" }
 
-vim.api.nvim_ceratze_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd({ "FileType" }, {
 	desc = "Reduce indent to 2 spaces in certain file types",
 	group = vim.api.nvim_create_augroup("small_indent", { clear = true }),
 	pattern = small_indent_file_types,

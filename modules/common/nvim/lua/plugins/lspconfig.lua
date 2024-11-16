@@ -60,6 +60,7 @@ return {
 			lspconfig.vuels.setup(default_setup)
 			lspconfig.pyright.setup(default_setup)
 			lspconfig.pyright.setup(default_setup)
+			lspconfig.emmet_ls.setup(default_setup)
 
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 			for type, icon in pairs(signs) do
