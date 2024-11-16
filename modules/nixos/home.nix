@@ -2,15 +2,15 @@
 
 {
 	imports = [
-		./terminal/kitty.nix
-		./terminal/fish
+		../common/terminal/kitty.nix
+		../common/terminal/fish
 
-		./programs/nvim
-		./programs/firefox.nix
-		./programs/cava.nix
-		./programs/tmux.nix
+		../common/nvim
+		../common/firefox.nix
+		../common/cava.nix
+		../common/tmux.nix
 
-		./services/kanata
+		./services/kanata.nix
 
 		./sway
 		./hypr

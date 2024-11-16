@@ -29,7 +29,7 @@
 			system = "aarch64-linux";
 			specialArgs = { inherit inputs; };
 			modules = [
-				./system/configuration.nix
+				./hosts/nixos/configuration.nix
 				home-manager.nixosModules.home-manager
 				{
 					home-manager.useGlobalPkgs = true;
@@ -37,7 +37,7 @@
 					home-manager.users.toby = {
 						imports = [
 							inputs.ags.homeManagerModules.default
-							./home
+							./modules/nixos/home.nix
 						];
 					};
 				}

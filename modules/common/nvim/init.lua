@@ -45,7 +45,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end
 })
 
--- do stuff when an lsp attaches
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Configure general LSP settings",
 	group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
@@ -63,5 +62,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bufmap("n", "<leader>rn", function() vim.lsp.buf.rename() end)
 		bufmap("n", "<leader>rr", function() vim.lsp.buf.references() end)
 		bufmap("n", "<leader>fm", function() vim.lsp.buf.format() end)
+	end
+})
+
+local small_indent_file_types = { "nix" }
+
+vim.api.nvim_ceratze_autocmd({ "FileType" }, {
+	desc = "Reduce indent to 2 spaces in certain file types",
+	group = vim.api.nvim_create_augroup("small_indent", { clear = true }),
+	pattern = small_indent_file_types,
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
 	end
 })

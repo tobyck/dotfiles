@@ -9,7 +9,7 @@
 		Service = {
 			Restart = "no";
 			ExecStart = pkgs.writeShellScript "start-kanata.sh" ''
-				${pkgs.kanata}/bin/kanata -c ${./keyboard.kbd}
+				${pkgs.kanata}/bin/kanata -c ${../../common/kanata/keyboard.kbd}
 			'';
 		};
 	};
