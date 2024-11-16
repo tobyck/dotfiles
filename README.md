@@ -4,8 +4,8 @@ My Nix dotfiles (currently just [NixOS on Apple Silicon](https://nixos.wiki/wiki
 
 <details>
     <summary>Screenshots from NixOS (slightly outdated)</summary>
-    <img src="./home/screenshots/nitch_and_cava.png">
-    <img src="./home/screenshots/neovim.png">
+    <img src="./nitch_and_cava.png">
+    <img src="./neovim.png">
     <table>
         <tr>
             <td>WM</td>
