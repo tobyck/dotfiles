@@ -8,3 +8,6 @@ input "type:keyboard" {
 	xkb_variant mao
 	xkb_options lv3:alt_switch
 }
+
+bindsym Mod4+grave exec "swaymsg input '*' xkb_options 'lv3:alt_switch'"
+bindsym Mod4+Shift+grave exec "swaymsg input '*' xkb_options 'lv3:ralt_alt'"

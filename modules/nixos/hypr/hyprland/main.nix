@@ -13,7 +13,7 @@
 		];
 
 		exec = [
-			"swaybg -i ${../../wallpapers/snowflake1.png}"
+			"swaybg -i ${../../../common/wallpapers/snowflake1.png}"
 			"ags"
 		];
 

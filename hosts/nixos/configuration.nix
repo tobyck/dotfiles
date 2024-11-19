@@ -51,7 +51,7 @@
 			"dialout"
 		];
 		initialPassword = "password";
-		shell = pkgs.fish;
+		shell = pkgs.nushell;
 	};
 
 	services.greetd = {

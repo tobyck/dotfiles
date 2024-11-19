@@ -106,8 +106,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # media
-set $volume /etc/nixos/home/scripts/volume.sh
-set $brightness /etc/nixos/home/scripts/brightness.sh
+set $volume /etc/nixos/modules/nixos/scripts/volume.sh
+set $brightness /etc/nixos/modules/nixos/scripts/brightness.sh
 set $kbd_backlight_name kbd_backlight
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioPlay exec playerctl play-pause

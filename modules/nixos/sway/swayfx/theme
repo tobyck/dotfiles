@@ -1,4 +1,4 @@
-output * bg /etc/nixos/home/wallpapers/snowflake1.png fill
+output * bg /etc/nixos/modules/common/wallpapers/snowflake1.png fill
 
 default_border pixel 1
 gaps inner 8

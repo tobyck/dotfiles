@@ -3,7 +3,7 @@
 {
 	imports = [
 		../common/terminal/kitty.nix
-		../common/terminal/fish
+		../common/terminal/nushell.nix
 
 		../common/nvim
 		../common/firefox.nix
@@ -54,6 +54,7 @@
 		bc
 		jq
 		pandoc
+		vivid
 
 		# TUIs
 		bottom

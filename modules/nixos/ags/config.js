@@ -1,4 +1,4 @@
-const CONFIG_DIR = '/etc/nixos/home/ags/'
+const CONFIG_DIR = '/etc/nixos/modules/nixos/ags/'
 const TMP = '/tmp/ags/'
 
 const entry = CONFIG_DIR + 'main.ts'
