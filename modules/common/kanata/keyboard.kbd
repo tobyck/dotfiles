@@ -28,6 +28,7 @@
 	qwt (layer-switch qwerty)
 	dvk (layer-switch dvorak)
 	spc (tap-hold 200 200 spc (layer-while-held misc))
+	sspc (fork spc (layer-while-held misc) (rmet ralt))
 	msc (layer-while-held misc)
 
 	;; i need to work out what's going on here lol
@@ -113,5 +114,5 @@
 	_    _    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    
-    _    _    _              @spc           _    _  
+    _    _    _              @sspc          _    _  
 )
