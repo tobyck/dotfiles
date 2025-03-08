@@ -25,7 +25,10 @@ return {
 				'asm',
 				'vue',
 				'python',
-				'ocaml'
+				'comment',
+				'jsdoc',
+				'zig',
+				'proto'
 			},
 			highlight = { enable = true },
 			indent = { enable = true },

@@ -6,15 +6,23 @@
 			# Disable greeting
 			set fish_greeting
 
-			# Run nitch but without the last newline because Starship adds one
-			# (why this works for removing the last newline, I'll never know)
-			echo "$(nitch)"
+			set -x PATH \
+					$HOME/.nix-profile/bin \
+					/etc/profiles/per-user/$USER/bin \
+					/run/current-system/sw/bin \
+					/nix/var/nix/profiles/default/bin \
+					/usr/local/bin \
+					/opt/homebrew/bin \
+					$PATH
 
-			# Get rid of the `l` alias
+			if command -q nix-your-shell
+					nix-your-shell fish | source
+			end
+
 			functions --erase l
 
 			# Use terminal colours for fzf
-			set -Ux FZF_DEFAULT_OPTS "--color 16"
+			# set -x FZF_DEFAULT_OPTS "--color 16"
 
 			# Initialise some stuff
 			starship init fish | source

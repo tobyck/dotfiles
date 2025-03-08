@@ -34,7 +34,7 @@ require("keymap")
 
 vim.cmd("colorscheme tokyonight")
 
-local spellcheck_file_types = { "gitcommit", "rust", "c", "typescript", "javascript", "python" }
+local spellcheck_file_types = { "gitcommit", "rust", "c", "typescript", "javascript", "python", "markdown" }
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   desc = "Enable spellcheck for certain file types",

@@ -1,7 +1,7 @@
 return {
 	{
 		'neovim/nvim-lspconfig',
-		event = "BufReadPost",
+		event = { "BufNewFile", "BufReadPost" },
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp'
 		},
@@ -41,8 +41,16 @@ return {
 				capabilities = default_capabilities
 			}
 
-			lspconfig.rust_analyzer.setup(default_setup)
-			lspconfig.tsserver.setup(default_capabilities)
+			lspconfig.rust_analyzer.setup({
+				capabilities = default_capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							runBuildScripts = true
+						}
+					}
+				}
+			})
 
 			lspconfig.lua_ls.setup({
 				capabilities = default_capabilities,
@@ -56,11 +64,13 @@ return {
 			})
 
 			lspconfig.nil_ls.setup(default_setup)
-			lspconfig.typst_lsp.setup(default_setup)
 			lspconfig.vuels.setup(default_setup)
 			lspconfig.pyright.setup(default_setup)
 			lspconfig.pyright.setup(default_setup)
 			lspconfig.emmet_ls.setup(default_setup)
+			lspconfig.zls.setup(default_setup)
+			lspconfig.ts_ls.setup(default_capabilities)
+			lspconfig.jdtls.setup(default_capabilities)
 
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 			for type, icon in pairs(signs) do
@@ -68,5 +78,8 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 		end
+	},
+	{
+		"mfussenegger/nvim-jdtls",
 	}
 }

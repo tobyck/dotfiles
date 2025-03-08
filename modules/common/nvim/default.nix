@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
 	programs.neovim = {
 		enable = true;
@@ -10,4 +12,17 @@
 		source = ./.;
 		recursive = true;
 	};
+
+	# Install language servers
+	home.packages = with pkgs; [
+		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
+		typescript-language-server
+		lua-language-server
+		nil # Nix
+		vue-language-server
+		pyright
+		emmet-ls
+		zls
+		jdt-language-server
+	];
 }

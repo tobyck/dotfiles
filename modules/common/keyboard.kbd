@@ -1,4 +1,5 @@
 (defsrc
+    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
 	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 	caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -20,6 +21,7 @@
 (deffakekeys
 	to-colemak-base (layer-switch colemak)
 	to-dvorak-base (layer-switch dvorak)
+	to-maori-dvorak-base (layer-switch maori-dvorak)
 )
 
 (defalias
@@ -27,6 +29,7 @@
 	cmk (layer-switch colemak)
 	qwt (layer-switch qwerty)
 	dvk (layer-switch dvorak)
+	mao (layer-switch maori-dvorak)	
 	spc (tap-hold 200 200 spc (layer-while-held misc))
 	sspc (fork spc (layer-while-held misc) (rmet ralt))
 	msc (layer-while-held misc)
@@ -34,6 +37,7 @@
 	;; i need to work out what's going on here lol
 	colemak-tap (multi (layer-switch colemak-no-mods) (on-idle-fakekey to-colemak-base tap 20))
 	dvorak-tap (multi (layer-switch dvorak-no-mods) (on-idle-fakekey to-dvorak-base tap 20))
+	maori-dvorak-tap (multi (layer-switch maori-dvorak-no-mods) (on-idle-fakekey to-maori-dvorak-base tap 20))
 
 	;; mods
 	md1 lmet
@@ -65,11 +69,37 @@
 	d-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @dvorak-tap) @md7 $rh-keys)
 	d-s (tap-hold-release-keys $tap-time1 $tap-time1 (multi s @dvorak-tap) @md8 $rh-keys)
 
+	;; maori aliases
+	whk (fork (macro w h a k a) (macro w (unshift h a k) (unshift a)) (lsft rsft))
+	wh (fork (macro w h) (macro w (unshift h)) (lsft rsft))
+	ng (fork (macro n g) (macro n (unshift g)) (lsft rsft))
+	ake (fork (macro a k e) (macro a (unshift k e)) (lsft rsft))
+ 	tng (fork (macro t a n g a) (macro t (unshift a n g) (unshift a)) (lsft rsft))
+	nei (fork (macro n e i) (macro n (unshift e i)) (lsft rsft))
+	na (fork (macro n 10 (unicode ā)) (macro n 10 (unicode ā)) (lsft rsft))
+	ra (fork (macro r 10 (unicode ā)) (macro r 10 (unicode ā)) (lsft rsft))
+	aua (fork (macro (unicode ā) u a) (macro (unicode Ā) (unshift u a)) (lsft rsft))
+	tou (fork (macro (unicode ā) t o u) (macro (unicode Ā) (unshift t o u)) (lsft rsft))
+	mai (fork (macro m a i) (macro m (unshift a i)) (lsft rsft))
+	atu (fork (macro a t u) (macro a (unshift t u)) (lsft rsft))
+	mcr (unicode ̄)
+
+	;; maori-dvorak hrm
+	m-a (tap-hold-release-keys $tap-time1 $tap-time1 (multi a @maori-dvorak-tap) @md1 $lh-keys)
+	m-o (tap-hold-release-keys $tap-time2 $tap-time2 (multi o @maori-dvorak-tap) @md2 $lh-keys)
+	m-e (tap-hold-release-keys $tap-time3 $tap-time3 (multi e @maori-dvorak-tap) @md3 $lh-keys)
+	m-u (tap-hold-release-keys $tap-time4 $tap-time4 (multi u @maori-dvorak-tap) @md4 $lh-keys)
+	m-h (tap-hold-release-keys $tap-time4 $tap-time4 (multi h @maori-dvorak-tap) @md5 $rh-keys)
+	m-t (tap-hold-release-keys $tap-time3 $tap-time3 (multi t @maori-dvorak-tap) @md6 $rh-keys)
+	m-n (tap-hold-release-keys $tap-time2 $tap-time2 (multi n @maori-dvorak-tap) @md7 $rh-keys)
+	m-m (tap-hold-release-keys $tap-time1 $tap-time1 (multi @mcr @maori-dvorak-tap) @md8 $rh-keys)
+
 	;; misc
 	cw (caps-word 2000)
 )
 
 (deflayer colemak
+    brdn brup _    _    _    _    prev pp   next mute vold volu
 	_    _    _    _    _    _    _    _    _    _    _    _    _    _
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc @a   @r   @s   @t   d    h    @n   @e   @i   @o   _    _
@@ -78,6 +108,7 @@
 )
 
 (deflayer colemak-no-mods
+    brdn brup _    _    _    _    prev pp   next mute vold volu
 	_    _    _    _    _    _    _    _    _    _    _    _    _    _
 	_    q    w    f    p    g    j    l    u    y    ;    _    _    _
 	bspc a    r    s    t    d    h    n    e    i    o    _    _
@@ -86,6 +117,7 @@
 )
 
 (deflayer dvorak
+    brdn brup _    _    _    _    prev pp   next mute vold volu
 	_    _    _    _    _    _    _    _    _    _    _    [    ]    _
 	_    '    ,    .    p    y    f    g    c    r    l    /    =    \
 	bspc @d-a @d-o @d-e @d-u i    d    @d-h @d-t @d-n @d-s -    _
@@ -94,6 +126,7 @@
 )
 
 (deflayer dvorak-no-mods
+    brdn brup _    _    _    _    prev pp   next mute vold volu
 	_    _    _    _    _    _    _    _    _    _    _    [    ]    _
 	_    '    ,    .    p    y    f    g    c    r    l    /    =    \
 	bspc a    o    e    u    i    d    h    t    n    s    -    _
@@ -102,14 +135,34 @@
 )
 
 (deflayer misc
-	XX   @cmk @qwt @dvk XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+    brdn brup _    _    _    _    prev pp   next mute vold volu
+	XX   @cmk @qwt @dvk @mao XX   XX   XX   XX   XX   XX   XX   XX   XX
 	XX   XX   @cw  XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
-	del  @md1 @md2 @md3 @md4 XX   left @md5 @md6 @md7 @md8 XX   XX
+	del  @md1 @md2 @md3 @md4 lrld left @md5 @md6 @md7 @md8 XX   XX
 	_    XX   XX   caps XX   XX   up   XX   XX   XX   XX   XX
 	_    _    _              _              _    _
 )
 
+(deflayer maori-dvorak
+    brdn brup _    _    _    _    prev pp   next mute vold volu
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    '    ,    .    p    @whk @wh  @ng  @ake r    @tng /    _    _
+	bspc @m-a @m-o @m-e @m-u i    @nei @m-h @m-t @m-n @m-m _    _
+	_    ;    @aua @tou k    @na  @ra  m    w    @mai @atu _
+	_    _    _              @spc           _    _
+)
+
+(deflayer maori-dvorak-no-mods
+    brdn brup _    _    _    _    prev pp   next mute vold volu
+	_    _    _    _    _    _    _    _    _    _    _    _    _    _
+	_    '    ,    .    p    @whk @wh  @ng  @ake r    @tng /    _    _
+	bspc a    o    e    u    i    @nei h    t    n    @mcr _    _
+	_    ;    @aua @tou k    @na  @ra  m    w    @mai @atu _
+	_    _    _              @spc           _    _
+)
+
 (deflayer qwerty
+    brdn brup _    _    _    _    prev pp   next mute vold volu
 	@cmk _    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    _    _    
 	_    _    _    _    _    _    _    _    _    _    _    _    _    

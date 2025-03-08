@@ -6,8 +6,8 @@
 		shortcut = "s";
 		keyMode = "vi";
 		mouse = true;
-		shell = "${pkgs.nushell}/bin/nu";
-		terminal = "xterm-kitty";
+		shell = "${pkgs.fish}/bin/fish";
+		terminal = "xterm-ghostty";
 		plugins = with pkgs; [
 			tmuxPlugins.vim-tmux-navigator
 		];

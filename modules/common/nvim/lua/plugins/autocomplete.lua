@@ -30,7 +30,10 @@ return {
 					['<C-d>'] = cmp.mapping.scroll_docs(4),
 
 					['<CR>'] = cmp.mapping.confirm({ select = true }),
-					['<C-Space>'] = cmp.mapping.complete()
+					['<S-CR>'] = cmp.mapping(function(fallback)
+						cmp.abort()
+						fallback()
+					end)
 				}),
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -47,5 +50,14 @@ return {
 				}
 			})
 		end
-	}
+	},
+	{
+		"danymat/neogen",
+		lazy = true,
+		config = true,
+		keys = {
+			{ "<leader>dc", ":lua require('neogen').generate()<CR>" }
+		}
+	},
+	{ "github/copilot.vim" }
 }

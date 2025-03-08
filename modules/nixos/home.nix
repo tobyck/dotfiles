@@ -2,13 +2,13 @@
 
 {
 	imports = [
-		../common/terminal/kitty.nix
-		../common/terminal/nushell.nix
+		(import ../common/terminal/kitty.nix { inherit pkgs; font = { name = "Iosevka NF"; size = 9.2; }; padding = 4; })
+		../common/terminal/fish
+		../common/terminal/tmux.nix
 
 		../common/nvim
 		../common/firefox.nix
 		../common/cava.nix
-		../common/tmux.nix
 
 		./services/kanata.nix
 
@@ -84,15 +84,6 @@
 		starship
 		nitch
 		hyprpicker
-
-		# Language servers
-		# (Install rust-analyzer with rustup: `rustup component add rust-analyzer`)
-		typescript-language-server
-		lua-language-server
-		nil # Nix
-		nodePackages.vls # Vue
-		pyright
-		emmet-ls
 
 		# Fonts
 		inter
