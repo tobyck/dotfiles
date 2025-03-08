@@ -1,9 +1,7 @@
-My Nix dotfiles (currently just [NixOS on Apple Silicon](https://nixos.wiki/wiki/NixOS_on_ARM/Apple_Silicon_Macs)). Very much a work in progress, and it will probably stay that way for a long time.
-
-🚧 Nix-darwin config coming soon. 🚧
+My Nix dotfiles for nix-darwin and NixOS (config for the latter is probably very broken, haven't tried it since switching back to MacOS :disappointed:). Very much a work in progress, and it will probably stay that way for a long time.
 
 <details>
-    <summary>Screenshots from NixOS (slightly outdated)</summary>
+    <summary>Screenshots from NixOS (outdated)</summary>
     <img src="./nitch_and_cava.png">
     <img src="./neovim.png">
     <table>
