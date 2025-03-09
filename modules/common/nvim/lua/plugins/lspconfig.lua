@@ -79,7 +79,5 @@ return {
 			end
 		end
 	},
-	{
-		"mfussenegger/nvim-jdtls",
-	}
+	{ "mfussenegger/nvim-jdtls" }
 }
