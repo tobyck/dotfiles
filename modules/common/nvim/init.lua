@@ -37,12 +37,12 @@ vim.cmd("colorscheme tokyonight")
 local spellcheck_file_types = { "gitcommit", "rust", "c", "typescript", "javascript", "python", "markdown" }
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  desc = "Enable spellcheck for certain file types",
-  group = vim.api.nvim_create_augroup("spellcheck", { clear = true }),
-  pattern = spellcheck_file_types,
-  callback = function()
-    vim.opt_local.spell = true
-  end
+	desc = "Enable spellcheck for certain file types",
+	group = vim.api.nvim_create_augroup("spellcheck", { clear = true }),
+	pattern = spellcheck_file_types,
+	callback = function()
+		vim.opt_local.spell = true
+	end
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -76,3 +76,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.opt_local.tabstop = 2
 	end
 })
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
