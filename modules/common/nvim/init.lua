@@ -19,6 +19,7 @@ vim.pack.add({
 	{ src = "https://github.com/altermo/ultimate-autopair.nvim" },
 	{ src = "https://github.com/kylechui/nvim-surround" },
 	{ src = "https://github.com/github/copilot.vim" },
+	{ src = "https://github.com/cbochs/grapple.nvim" },
 })
 
 -- colour
@@ -64,9 +65,16 @@ require "nvim-treesitter.configs".setup({
 	}
 })
 
+require "grapple".setup({
+	icons = false,
+	win_opts = {
+		border = "rounded"
+	}
+})
+
 -- lsp stuff
 
-vim.lsp.enable({ "lua_ls", "ts_ls", "rust_analyzer", "nil_ls" })
+vim.lsp.enable({ "lua_ls", "ts_ls", "rust_analyzer", "nil_ls", "jdtls" })
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
@@ -98,3 +106,10 @@ vim.keymap.set("n", "<leader>rr", ":FzfLua lsp_references<CR>")
 vim.keymap.set("n", "<leader>fd", ":FzfLua lsp_workspace_diagnostics<CR>")
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+vim.keymap.set("n", "<leader>a", ":Grapple toggle<CR>")
+vim.keymap.set("n", "<leader>h", ":Grapple toggle_tags<CR>")
+vim.keymap.set("n", "<leader>n", ":Grapple select index=1<CR>")
+vim.keymap.set("n", "<leader>e", ":Grapple select index=2<CR>")
+vim.keymap.set("n", "<leader>i", ":Grapple select index=3<CR>")
+vim.keymap.set("n", "<leader>o", ":Grapple select index=4<CR>")
