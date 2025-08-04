@@ -38,7 +38,6 @@ in {
 		];
 		brews = [
 			"nanopb"
-			# "bob"
 		];
 		masApps = {
 			"Just Focus" = 1142151959;
@@ -65,8 +64,6 @@ in {
 					"/Applications/Spotify.app"
 					"/System/Applications/Mail.app"
 					"/System/Applications/Calendar.app"
-					"/System/Applications/Reminders.app"
-					"/Applications/Discord.app"
 					"/Applications/WhatsApp.app"
 				];
 				show-recents = false;

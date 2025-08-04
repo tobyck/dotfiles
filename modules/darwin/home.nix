@@ -2,12 +2,11 @@
 
 {
 	imports = [
-		# (import ../common/terminal/emulators/kitty.nix { inherit pkgs; font = { name = "Iosevka Nerd Font Mono"; size = 13; }; padding = 6; })
 		../common/terminal/emulators/ghostty.nix
 		../common/terminal/shells/fish
 		../common/terminal/tmux.nix
 
-		../common/nvim
+		../common/nvim.nix
 	];
 
 	home.username = "toby";
@@ -24,24 +23,17 @@
 		bottom
 		lazygit
 		starship
-		vivid
 		arduino-cli
 		platformio
 		nix-your-shell
 		any-nix-shell
 		nerd-fonts.iosevka
 		gradle
-		dark-mode-notify
 	];
 
 	home.shellAliases = {
 		ls = "eza";
-		la = "eza -a";
-		ll = "eza -l --icons";
-		lla = "eza -la --icons";
-
-		md = "mkdir -p";
-		rd = "rmdir";
+		tree = "tree -C";
 	};
 
 	programs.home-manager.enable = true;

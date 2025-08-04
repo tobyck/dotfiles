@@ -10,7 +10,7 @@
 	# };
 
 	home.file.".config/nvim" = {
-		source = ../nvim-minimal;
+		source = ./nvim;
 		recursive = true;
 	};
 

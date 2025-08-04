@@ -1,90 +1,100 @@
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true;
+vim.o.wrap = false
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.winborder = "rounded"
 vim.g.mapleader = " "
 
--- bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.add({
+	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
+	{ src = "https://github.com/mbbill/undotree" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+	{ src = "https://github.com/altermo/ultimate-autopair.nvim" },
+	{ src = "https://github.com/kylechui/nvim-surround" },
+	{ src = "https://github.com/github/copilot.vim" },
+})
 
-require("lazy").setup("plugins", {
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"netrwPlugin",
-				"gzip",
-				"tarPlugin",
-				"tohtml",
-				"zipPlugin"
+-- colour
+vim.cmd("colorscheme vague")
+vim.cmd(":hi statusline guibg=#1c1c1c")
+
+-- simple plugins
+require "fzf-lua".setup()
+require "ultimate-autopair".setup()
+require "nvim-surround".setup()
+
+-- plugin configs
+
+require "oil".setup({
+	float = {
+		max_width = 0.8,
+		max_height = 0.85,
+	}
+})
+
+require "nvim-treesitter.configs".setup({
+	ensure_installed = { "typescript", "c", "cpp", "rust", "lua", "nix" },
+	highlight = { enable = true },
+	indent = { enable = true },
+	textobjects = {
+		select = {
+			enable = true,
+			lookahead = true,
+			keymaps = {
+				['aca'] = '@call.outer',
+				['ica'] = '@call.inner',
+				['acm'] = '@comment.outer',
+				['icm'] = '@comment.inner',
+				['af'] = '@function.outer',
+				['if'] = '@funciton.inner',
+				['in'] = '@number.inner',
+				['aa'] = '@parameter.outer',
+				['ia'] = '@parameter.inner',
+				['art'] = '@return.outer',
+				['irt'] = '@return.inner'
 			}
 		}
 	}
 })
 
--- apply options and keymappings
-require("options")
-require("keymap")
+-- lsp stuff
 
-vim.cmd("colorscheme tokyonight")
+vim.lsp.enable({ "lua_ls", "ts_ls", "rust_analyzer", "nil_ls" })
 
-local spellcheck_file_types = { "gitcommit", "rust", "c", "typescript", "javascript", "python", "markdown" }
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+		vim.o.signcolumn = "yes";
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	desc = "Enable spellcheck for certain file types",
-	group = vim.api.nvim_create_augroup("spellcheck", { clear = true }),
-	pattern = spellcheck_file_types,
-	callback = function()
-		vim.opt_local.spell = true
-	end
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "Configure general LSP settings",
-	group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
-	callback = function(event)
-		local function bufmap(modes, keys, action)
-			vim.keymap.set(modes, keys, action, { buffer = event.buf })
+		-- make auto complete show up when you type
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 		end
-
-		vim.opt.signcolumn = "yes"
-
-		bufmap("n", "gd", function() vim.lsp.buf.definition() end)
-		bufmap("n", "gD", function() vim.lsp.buf.declaration() end)
-		bufmap("n", "K", function() vim.lsp.buf.hover() end)
-		bufmap("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
-		bufmap("n", "<leader>rn", function() vim.lsp.buf.rename() end)
-		bufmap("n", "<leader>rr", function() vim.lsp.buf.references() end)
-		bufmap("n", "<leader>fm", function() vim.lsp.buf.format() end)
-	end
+	end,
 })
 
-local small_indent_file_types = { "nix" }
+vim.cmd("set completeopt+=noselect")
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	desc = "Reduce indent to 2 spaces in certain file types",
-	group = vim.api.nvim_create_augroup("small_indent", { clear = true }),
-	pattern = small_indent_file_types,
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-	end
-})
+-- keybinds
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+vim.keymap.set("n", "<leader>ff", ":FzfLua files<CR>")
+vim.keymap.set("n", "<leader>fg", ":FzfLua grep_project<CR>")
+vim.keymap.set("n", "<leader>fr", ":FzfLua resume<CR>")
+vim.keymap.set("n", "<leader>fs", ":Oil<CR>")
 
-local orig_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-	opts.border = "rounded"
-	return orig_open_floating_preview(contents, syntax, opts, ...)
-end
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
+
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>ca", ":FzfLua lsp_code_actions<CR>")
+vim.keymap.set("n", "<leader>rr", ":FzfLua lsp_references<CR>")
+vim.keymap.set("n", "<leader>fd", ":FzfLua lsp_workspace_diagnostics<CR>")
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
