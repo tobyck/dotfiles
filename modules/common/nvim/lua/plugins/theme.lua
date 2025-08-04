@@ -15,13 +15,28 @@ return {
 				end
 
 				-- brighten line numbers
-				local line_nr_colour = { fg = "#515A82" }
-				hl.LineNr = line_nr_colour
-				hl.LineNrAbove = line_nr_colour
-				hl.LineNrBelow = line_nr_colour
+				-- local line_nr_colour = { fg = "#515A82" }
+				-- hl.LineNr = line_nr_colour
+				-- hl.LineNrAbove = line_nr_colour
+				-- hl.LineNrBelow = line_nr_colour
 
-				hl.CursorLine = { bg = "#24283b" } -- darken cursorline bg
+				-- darken cursorline bg
+				hl.CursorLine = { bg = "#24283b" }
 			end
+		}
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		config = true,
+		opts = {
+			set_dark_mode = function()
+				vim.cmd("colorscheme tokyonight-night")
+				vim.opt.cursorline = true
+			end,
+			set_light_mode = function()
+				vim.cmd("colorscheme tokyonight-day")
+				vim.opt.cursorline = false
+			end,
 		}
 	}
 }

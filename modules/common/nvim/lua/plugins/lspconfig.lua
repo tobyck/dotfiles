@@ -39,7 +39,6 @@ return {
 			lspconfig.nil_ls.setup(default_setup)
 			lspconfig.vuels.setup(default_setup)
 			lspconfig.pyright.setup(default_setup)
-			lspconfig.pyright.setup(default_setup)
 			lspconfig.emmet_ls.setup(default_setup)
 			lspconfig.zls.setup(default_setup)
 			lspconfig.ts_ls.setup(default_capabilities)

@@ -24,6 +24,7 @@ return {
 			local fb_actions = telescope.extensions.file_browser.actions
 
 			telescope.setup({
+				defaults = {},
 				extensions = {
 					file_browser = {
 						layout_config = {
@@ -36,7 +37,8 @@ return {
 								["<C-A-r>"] = fb_actions.rename,
 								["<C-A-m>"] = fb_actions.move,
 								["<C-A-y>"] = fb_actions.copy,
-								["<C-A-d>"] = fb_actions.remove
+								["<C-A-d>"] = fb_actions.remove,
+								["<BS>"] = false
 							}
 						}
 					}

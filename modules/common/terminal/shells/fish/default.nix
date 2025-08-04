@@ -13,6 +13,8 @@
 					/nix/var/nix/profiles/default/bin \
 					/usr/local/bin \
 					/opt/homebrew/bin \
+					~/.cargo/bin \
+					~/.local/share/bob/nvim-bin \
 					$PATH
 
 			if command -q nix-your-shell

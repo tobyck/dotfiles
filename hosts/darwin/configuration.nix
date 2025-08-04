@@ -1,13 +1,15 @@
 { pkgs, ... }:
 
-{
+let
+	username = "toby";
+in {
 	imports = [
 		../../modules/darwin/kanata.nix
 	];
 
-	users.users.toby = {
-			name = "toby";
-			home = "/Users/toby";
+	users.users.${username} = {
+			name = username;
+			home = "/Users/${username}";
 	};
 
 	homebrew = {
@@ -32,10 +34,19 @@
 			"ghostty"
 			"postman"
 			"adobe-creative-cloud"
+			"microsoft-excel"
 		];
+		brews = [
+			"nanopb"
+			# "bob"
+		];
+		masApps = {
+			"Just Focus" = 1142151959;
+		};
 	};
 
 	system = {
+		primaryUser = username;
 		defaults = {
 			NSGlobalDomain = {
 				AppleInterfaceStyle = "Dark";
@@ -70,7 +81,8 @@
 			screencapture.location = "~/Pictures/Screenshots";
 		};
 
-		activationScripts.postUserActivation.text = "defaultbrowser zen";
+		activationScripts.setDefaultBrowser.text = "sudo -u ${username} defaultbrowser zen";
+
 		startup.chime = false;
 		stateVersion = 5;
 	};

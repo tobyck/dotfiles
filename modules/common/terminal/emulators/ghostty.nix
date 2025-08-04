@@ -6,7 +6,7 @@
 		package = null;
 
 		settings = {
-			theme = "tokyonight_night";
+			theme = "/Users/toby/.config/dotfiles/modules/common/terminal/emulators/vague.txt";
 			command = "${pkgs.fish}/bin/fish --login --interactive";
 			shell-integration = "fish";
 			font-family = "Iosevka NFM";

@@ -31,6 +31,7 @@
 		any-nix-shell
 		nerd-fonts.iosevka
 		gradle
+		dark-mode-notify
 	];
 
 	home.shellAliases = {

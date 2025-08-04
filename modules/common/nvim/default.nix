@@ -1,15 +1,16 @@
 { pkgs, ... }:
 
 {
-	programs.neovim = {
-		enable = true;
-		viAlias = true;
-		vimAlias = true;
-		defaultEditor = true;
-	};
+	# Neovim is now managed by Bob
+	# programs.neovim = {
+	# 	enable = true;
+	# 	viAlias = true;
+	# 	vimAlias = true;
+	# 	defaultEditor = true;
+	# };
 
 	home.file.".config/nvim" = {
-		source = ./.;
+		source = ../nvim-minimal;
 		recursive = true;
 	};
 
