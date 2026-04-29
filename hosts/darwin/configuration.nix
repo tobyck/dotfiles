@@ -14,10 +14,10 @@ in {
 
 	homebrew = {
 		enable = true;
-		onActivation.cleanup = "uninstall";
+		onActivation.cleanup = "zap";
+		onActivation.upgrade = true;
 		casks = [
 			"zen-browser"
-			"kitty"
 			"obsidian"
 			"spotify"
 			"discord"
@@ -35,12 +35,14 @@ in {
 			"postman"
 			"adobe-creative-cloud"
 			"microsoft-excel"
+			"microsoft-powerpoint"
 		];
 		brews = [
 			"nanopb"
 		];
 		masApps = {
-			"Just Focus" = 1142151959;
+			# "Just Focus" = 1142151959;
+			"Screen Zen- Screen Time Control" = 1541027222;
 		};
 	};
 

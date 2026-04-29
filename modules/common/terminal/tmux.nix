@@ -1,26 +1,43 @@
 { pkgs, ... }:
 
 {
-	programs.tmux = {
-		enable = true;
-		shortcut = "s";
-		keyMode = "vi";
-		mouse = true;
-		shell = "${pkgs.fish}/bin/fish";
-		terminal = "xterm-ghostty";
-		plugins = with pkgs; [
-			tmuxPlugins.vim-tmux-navigator
-		];
-		extraConfig = ''
-			set -g status-justify centre
-			set -g status-style 'fg=color7 bg=#1c1c1c'
-			set -g message-style 'bg=default, fg=white'
-			set -g status-left '#[bg=#{?client_prefix,default,#404040}] #S '
+  programs.tmux = rec {
+    enable = true;
+    shortcut = "s";
+    keyMode = "vi";
+    mouse = true;
+    shell = "${pkgs.fish}/bin/fish";
+    terminal = "tmux-256color";
+    plugins = with pkgs; [
+      tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = ''
+					set -g @resurrect-save 'S'
+					set -g @resurrect-restore 'R'
+				'';
+      }
+      tmuxPlugins.continuum
+    ];
+    extraConfig = ''
+			set -g renumber-windows on
+			set -g status-justify absolute-centre
+
+			bind C-${shortcut} last-window
+
+			set -g @status-bg '#1c1c1c'
+			set -g @hl-bg '#363636'
+
+			set -g status-left '#[bg=#{?client_prefix,default,#{@hl-bg}}] #S '
 			set -g status-left-length 50
-			set -g status-right '#[bg=#404040] %a %-d %b %-I:%M %p '
-			setw -g window-status-current-style 'fg=colour6 bg=default bold'
+			set -g status-right '%a %-d %b %-I:%M %p '
 			setw -g window-status-current-format '#I:#W '
-			setw -g window-status-style 'fg=color8'
+
+			set -g mode-style 'bg=#{@hl-bg}'
+			set -g status-style 'bg=#{@status-bg} fg=grey'
+			set -g message-style 'bg=#{@status-bg}'
+			setw -g window-status-current-style 'fg=blue bold'
+			setw -g window-status-style 'fg=brightblack'
 		'';
-	};
+  };
 }

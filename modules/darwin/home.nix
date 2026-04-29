@@ -29,11 +29,16 @@
 		any-nix-shell
 		nerd-fonts.iosevka
 		gradle
+		utm
 	];
 
 	home.shellAliases = {
 		ls = "eza";
 		tree = "tree -C";
+	};
+
+	home.sessionVariables = {
+		EDITOR = "nvim";
 	};
 
 	programs.home-manager.enable = true;

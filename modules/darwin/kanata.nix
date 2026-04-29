@@ -1,5 +1,3 @@
-# { lib, ... }:
-
 let
   driverDaemonCmd = "/Library/Application\\ Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon";
 	kanataCmd = "/Users/toby/Downloads/kanata_macos_arm64 --cfg ${../common/keyboard.kbd}";

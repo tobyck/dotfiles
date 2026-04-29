@@ -3,7 +3,7 @@
 {
 	# Neovim is now managed by Bob
 	# programs.neovim = {
-	# 	enable = true;
+	# 	enable = false;
 	# 	viAlias = true;
 	# 	vimAlias = true;
 	# 	defaultEditor = true;
@@ -20,10 +20,11 @@
 		typescript-language-server
 		lua-language-server
 		nil # Nix
-		vue-language-server
+		# vue-language-server
 		pyright
 		emmet-ls
 		zls
 		jdt-language-server
+		tinymist
 	];
 }
